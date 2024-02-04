@@ -1,0 +1,493 @@
+@import url("https://fonts.googleapis.com/css2?family=Graduate&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rajdhani&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.Main {
+  height: 100vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.89), rgba(0, 0, 0, 0.527)),
+    url("../assets/background.avif");
+  background-size: cover;
+  background-position: center;
+}
+/* Nav bar  */
+li {
+  list-style: none;
+}
+.navbar a {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  text-decoration: none;
+  color: #fff;
+  font-size: 20px;
+}
+header {
+  padding: 0 2rem;
+}
+
+.navbar {
+  width: 100%;
+  height: 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.navbar .logo {
+  margin-top: 30px;
+}
+.navbar .logo a {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: rgb(23, 221, 178);
+  text-shadow: #16a6c3 0px 0px 5px;
+}
+
+.navbar .links {
+  display: flex;
+  gap: 2rem;
+}
+.navbar .links a:hover {
+  color: cyan;
+  transition: 1s;
+}
+/* hero section  */
+.hero {
+  position: relative;
+  padding: 50px 50px;
+  margin-top: 5rem;
+  justify-content: center;
+  display: flex;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.welcome {
+  width: 55%;
+  padding-right: 5rem;
+  margin-top: 5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.welcome h1 {
+  font-family: "Graduate", serif;
+  letter-spacing: 2px;
+  color: wheat;
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+.welcome p {
+  font-family: "Playfair Display", serif;
+  font-size: 20px;
+  margin-bottom: 2rem;
+  color: #fff;
+}
+.welcome #element {
+  /* color: rgb(253, 169, 183); */
+  color: rgb(45, 232, 232);
+}
+.welcome a {
+  text-decoration: none;
+  width: 50%;
+  padding: 10px 20px;
+  background-color: rgb(8, 52, 56);
+  border-radius: 5px;
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 20px;
+  transition: 0.5s;
+  box-shadow: #16a6c3 0px 0px 10px;
+}
+.welcome a:hover {
+  color: #f8f4ec;
+  background-color: #00f7fb;
+  color: #081b29;
+  transform: translateY(-10px);
+  /* transform: scale(1.1); */
+  transition: 0.5s;
+}
+
+.loginForm {
+  width: 40%;
+  font-family: "Rajdhani", sans-serif;
+  /* text-align: center; */
+  padding: 50px;
+  background-color: #ffffff99;
+  border-radius: 20px;
+}
+.loginForm h2 {
+  font-size: 30px;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.loginForm .inputBox {
+  position: relative;
+  width: 100%;
+  margin-top: 10px;
+}
+.loginForm .inputBox input {
+  width: 100%;
+  background-color: transparent;
+  padding: 5px 0;
+  font-size: 16px;
+  margin: 10px 0;
+  border: none;
+  border-bottom: 2px solid #333;
+  outline: none;
+  resize: none;
+}
+.loginForm .inputBox span {
+  position: absolute;
+  left: 0;
+  padding: 5px 0;
+  font-size: 16px;
+  margin: 10px 0;
+  pointer-events: none;
+  transition: 0.5s;
+  color: #666;
+  letter-spacing: 1px;
+  font-weight: bold;
+  pointer-events: none;
+}
+
+.loginForm .inputBox input:focus ~ span,
+.loginForm .inputBox input:valid ~ span {
+  color: #470899;
+  font-size: 14px;
+  transform: translateY(-20px);
+}
+.loginForm .inputBox input[type="submit"] {
+  width: 100px;
+  font-family: "Rajdhani", sans-serif;
+  background: #085662;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  padding: 10px 5px auto;
+  font-size: 18px;
+  font-weight: 300;
+  border-radius: 5px;
+  transition: 0.4s;
+}
+.loginForm .inputBox input[type="submit"]:hover {
+  box-shadow: #00ddff 0px 0px 10px;
+  transform: translateY(-5px);
+  background: #16a6c3;
+  transition: 0.4s;
+}
+
+/* About  */
+.about {
+  display: flex;
+  background: #081b29;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  font-family: "Rajdhani", sans-serif;
+}
+
+.about .content {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 5rem 0 5rem;
+}
+.about .content h1 {
+  color: #efe5ee;
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+.about .content p {
+  color: #fff;
+  font-size: 15px;
+  margin-bottom: 2rem;
+  text-align: justify;
+  text-justify: inter-word;
+  margin-bottom: 5px;
+}
+.about .image {
+  width: 40%;
+  margin: 5rem 0 0 5rem;
+}
+
+.about .image img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 0 20px #0dbfcb;
+  transition: 0.4s;
+}
+.about .image img:hover {
+  transform: scale(1.1);
+  transition: 0.5s;
+}
+
+.social span {
+  color: #00f7fb;
+  margin-right: 10px;
+}
+.social a {
+  text-decoration: none;
+  color: #081b29;
+  display: inline-flex;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
+  border-radius: 50%;
+  background-color: #00f7fb;
+  transition: 0.4s;
+}
+.social a:hover {
+  box-shadow: #00f7fb 0px 0px 15px;
+  transform: translateY(-10px);
+  transition: 0.4s;
+}
+
+/* Contact  */
+.contact {
+  background: #081b29;
+  font-family: "Rajdhani", sans-serif;
+}
+.contact .content h2 {
+  color: #efe5ee;
+  font-size: 3rem;
+  font-weight: bold;
+  text-align: center;
+}
+.Container {
+  padding: 5rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Container .contactInfo {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+.Container .contactInfo .box {
+  position: relative;
+  padding: 20px 0;
+  display: flex;
+}
+.Container .contactInfo .box .icon {
+  min-width: 50px;
+  height: 50px;
+  color: black;
+  background-color: #00f7fb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-size: 22px;
+}
+
+.Container .contactInfo .box .text {
+  display: flex;
+  margin-left: 20px;
+  font-size: 20px;
+  color: #fff;
+  flex-direction: column;
+  font-weight: 300;
+}
+
+.Container .contactInfo .box .text h3 {
+  font-weight: 500;
+  font-size: 25px;
+  color: #fff;
+}
+.Container .contactInfo .box .text a {
+  color: #fff;
+  text-decoration: none;
+}
+.contactForm {
+  width: 50%;
+  padding: 50px;
+  /* background: #fff; */
+  border-radius: 20px;
+}
+.contactForm h2 {
+  font-size: 40px;
+  color: #fff;
+  font-weight: 500;
+}
+.contactForm .inputBox {
+  position: relative;
+  width: 100%;
+  margin-top: 10px;
+}
+.contactForm .inputBox input,
+.contactForm .inputBox textarea {
+  font-family: "Rajdhani", sans-serif;
+  color: #fff;
+  width: 100%;
+  padding: 5px 0;
+  font-size: 14px;
+  margin: 10px 0;
+  border: none;
+  border-bottom: 2px solid #00fffb;
+  background: transparent;
+  outline: none;
+  resize: none;
+}
+
+.contactForm .inputBox span {
+  position: absolute;
+  color: #fff;
+  left: 0;
+  padding: 5px 0 0 5px;
+  font-size: 16px;
+  margin: 10px 0;
+  pointer-events: none;
+  transition: 0.5s;
+  pointer-events: none;
+}
+
+.contactForm .inputBox input:focus ~ span,
+.contactForm .inputBox input:valid ~ span,
+.contactForm .inputBox textarea:focus ~ span,
+.contactForm .inputBox textarea:valid ~ span {
+  color: #ffb700;
+  font-size: 12px;
+  transform: translateY(-20px);
+}
+
+.contactForm .inputBox input[type="submit"] {
+  width: 100px;
+  background: #085662;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  font-size: 18px;
+  font-weight: 300;
+  border-radius: 5px;
+}
+.contactForm .inputBox input[type="submit"]:hover {
+  background: #16a6c3;
+  transition: 0.3s;
+}
+.contactForm span#validity {
+  color: tomato;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  align-content: flex-end;
+  justify-content: center;
+}
+/* Footer  */
+.footer {
+  background-color: #091823;
+}
+.foot {
+  font-family: "Rajdhani", sans-serif;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.footer .foot .logo {
+  display: flex;
+  font-weight: bold;
+  flex-direction: column;
+  color: #00ddff;
+  margin-top: 4.5rem;
+  font-size: 25px;
+}
+
+.footer .foot .nav {
+  margin-top: 4.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.foot .nav h1 {
+  color: white;
+  font-size: 25px;
+}
+.foot .nav ul li {
+  margin-top: 1rem;
+}
+.foot .nav ul li a {
+  color: #00ddff;
+  display: inline-flex;
+  text-decoration: none;
+  font-size: 20px;
+  transition: 0.5s;
+}
+.foot .nav ul li a:hover {
+  transform: scale(1.1);
+  color: #2d6a6a;
+  transition: 0.5s;
+}
+.footercontact {
+  margin-top: 4.5rem;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.footercontact h1 {
+  font-size: 25px;
+  color: white;
+}
+.footercontact p a {
+  text-decoration: none;
+  color: #00ddff;
+}
+.footercontact p {
+  margin-top: 1rem;
+  color: #00ddff;
+  font-size: 20px;
+}
+.footersocial {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.footersocial a {
+  text-decoration: none;
+  color: #081b29;
+  display: inline-flex;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  margin: 60px 40px 30px 0;
+  border-radius: 50%;
+  background-color: #00f7fb;
+  transition: 0.4s;
+}
+.footersocial a:hover {
+  box-shadow: #00f7fb 0px 0px 15px;
+  transform: translateY(-10px);
+  transition: 0.4s;
+}
+.copyright {
+  font-family: "Courier New", Courier, monospace;
+  background-color: #092635;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  height: 10vh;
+}
+.copyright .content p span {
+  font-family: "Rajdhani", sans-serif;
+  letter-spacing: 1px;
+  font-weight: bold;
+  text-transform: uppercase;
+}

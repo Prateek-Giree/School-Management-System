@@ -1,0 +1,115 @@
+@import url("https://fonts.googleapis.com/css2?family=Rajdhani&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Rajdhani", sans-serif;
+  height: 100vh;
+  background: linear-gradient(to left, #081b2985, rgba(0, 0, 0, 0.663)),
+    url("../assets/teacher.webp");
+  /* background: url("../assets/teacher.webp"); */
+  background-size: cover;
+  background-position: center;
+}
+.container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-end;
+  height: 100vh;
+}
+.content {
+  width: 50%;
+  margin: 0 0 5rem 5rem;
+  color: white;
+}
+.content h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+.content p {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+.signup {
+  color: aliceblue;
+  letter-spacing: 1px;
+  height: 100vh;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #081b29bc;
+  backdrop-filter: blur(4px);
+}
+.signup h1 {
+  font-size: 30px;
+  margin: 0 0 2rem 3rem;
+}
+.signup .inputBox {
+  position: relative;
+  width: 100%;
+  margin-top: 10px;
+}
+.signup .inputBox input {
+  width: 70%;
+  color: #ffffff;
+  background-color: transparent;
+  padding: 5px 0;
+  font-size: 14px;
+  margin: 1rem 0 0 3rem;
+  border: none;
+  border-bottom: 2px solid #00ffea;
+  outline: none;
+}
+
+.signup .inputBox span {
+  position: absolute;
+  left: 0;
+  padding: 5px 0;
+  font-size: 16px;
+  margin: 1rem 0 0 3rem;
+  pointer-events: none;
+  transition: 0.5s;
+  color: #ffffff;
+  letter-spacing: 1px;
+  pointer-events: none;
+}
+
+.signup .inputBox input:focus ~ span,
+.signup .inputBox input:valid ~ span {
+  color: #ff9800;
+  font-weight: bold;
+  font-size: 14px;
+  transform: translateY(-20px);
+}
+
+.signup button {
+  width: 70%;
+  margin: 2rem 0 0 3rem;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #00ffea;
+  color: #081b29;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  border: 1px solid #00ffea;
+  transition: 0.5s;
+}
+.signup button:hover {
+  background-color: #081b29;
+  color: #00ffea;
+  border: 1px solid #00ffea;
+  box-shadow: #00ffea 0px 0px 10px;
+}
+.signup a {
+  text-decoration: none;
+  color: #ffffff;
+  display: block;
+  margin: 1rem 0 0 3rem;
+}

@@ -89,28 +89,7 @@ header {
   color: #fff;
 }
 .welcome #element {
-  /* color: rgb(253, 169, 183); */
   color: rgb(45, 232, 232);
-}
-.welcome a {
-  text-decoration: none;
-  width: 50%;
-  padding: 10px 20px;
-  background-color: rgb(8, 52, 56);
-  border-radius: 5px;
-  text-decoration: none;
-  color: #ffffff;
-  font-size: 20px;
-  transition: 0.5s;
-  box-shadow: #16a6c3 0px 0px 10px;
-}
-.welcome a:hover {
-  color: #f8f4ec;
-  background-color: #00f7fb;
-  color: #081b29;
-  transform: translateY(-10px);
-  /* transform: scale(1.1); */
-  transition: 0.5s;
 }
 
 .loginForm {

@@ -8,7 +8,7 @@
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Home</title>
-    <link rel="stylesheet" href="../src/css/style.css">
+    <link rel="stylesheet" href="../src/css/index.css">
 
 </head>
 
@@ -35,13 +35,13 @@
                     <p>Welcome to the Heart of Educational Excellence! Our School Management System:
                         <span id="element"></span>
                     </p>
-                    <a href="../src/pages/register_teacher.php">Register New Teacher</a>
                 </div>
+
                 <div class="loginForm">
-                    <form action="#" method="post" onsubmit="return validate();">
+                    <form action="../src/process/teacherlogin.php" method="post">
                         <h2>Login as teacher</h2>
                         <div class="inputBox">
-                            <input type="text" name="name" id="email" required="required" />
+                            <input type="text" name="email" id="email" required="required" />
                             <span>Email</span>
                         </div>
                         <div class="inputBox">
@@ -131,7 +131,7 @@
                         <span>Full Name</span>
                     </div>
                     <div class="inputBox">
-                        <input type="email" name="contactemail" id="email1" required="required" />
+                        <input type="email" name="email" id="email1" required="required" />
                         <span>Email</span>
                     </div>
                     <div class="inputBox">
@@ -165,7 +165,7 @@
                 <p>Khairahani-08, Parsa <br />Chitwan</p>
                 <p>056-565656</p>
                 <p>
-                    <a href="XYZSchool.info@gmail.com">XYZSchool.info@gmail.com</a>
+                    <a href="mailto:XYZSchool.info@gmail.com">XYZSchool.info@gmail.com</a>
                 </p>
             </div>
         </div>
@@ -180,9 +180,8 @@
             <p> &copy; 2024 <span>Pratik</span> & <span>Sabin</span> | All Rights Reserved</p>
         </div>
     </section>
-    <!-- Script  -->
-    <!-- <script src="../src/js/validation.js" defer></script> -->
 
+    <!-- Script  -->
     <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
     <script type="text/javascript">
         // typing animation script
@@ -191,45 +190,29 @@
             typeSpeed: 50,
             loop: true,
         });
- 
+
         function validate() {
 
             let name = document.getElementById('name').value;
             let email = document.getElementById("email1").value;
             let message = document.getElementById('message').value;
-            /*------------------Name Validation--------------*/
 
-            // Check if the name is not empty
-            if (name.trim() === '') {
-                document.getElementById("validity").innerHTML = "Name cannot be empty";
+            /*------------------Name Validation--------------*/
+            let nameRegex = new RegExp("^[a-zA-Z]{4,}$");
+            if (!nameRegex.test(name)) {
+                document.getElementById("validity").innerHTML = "Invalid Name";
                 setTimeout(function () { document.getElementById("validity").innerHTML = ""; }, 3000);
-                // alert('Name cannot be empty');
                 return false;
             }
-            // Check if the name contains at least 4 letters
-            if (name.length < 5) {
-                document.getElementById("validity").innerHTML = "Name should contain at least 4 letters";
-                setTimeout(function () { document.getElementById("validity").innerHTML = ""; }, 3000);
-                // alert('Name should contain at least 4 letters');
-                return false;
-            }
-            // Check if the name contains any numbers
-            if (/\d/.test(name)) {
-                document.getElementById("validity").innerHTML = "Name should only contain letters";
-                setTimeout(function () { document.getElementById("validity").innerHTML = ""; }, 3000);
-                // alert('Name should not contain numbers');
-                return false;
-            }
+
             /*-----------------------------------------------*/
 
             /*------------------Email Validation--------------*/
-            let emailRegex = new RegExp("^[a-zA-Z0-9._-]+\@[a-zA-Z0-9-]+(\.[a-zA-Z]){2,4}$");
+            let emailRegex = new RegExp("^[a-zA-Z0-9\._-]+\@[a-zA-Z0-9-]+\.[a-zA-Z]{2,4}$");
             console.log(email);
             if (!emailRegex.test(email)) {
                 document.getElementById("validity").innerHTML = "Invalid Email";
                 setTimeout(function () { document.getElementById("validity").innerHTML = ""; }, 3000);
-                // alert('Invalid email');
-    
                 return false;
             }
 
@@ -239,10 +222,9 @@
             if (message.trim() === '') {
                 document.getElementById("validity").innerHTML = "Message cannot be empty";
                 setTimeout(function () { document.getElementById("validity").innerHTML = ""; }, 3000);
-                // alert('Name cannot be empty');
                 return false;
             }
-            return true  
+            return true
         }
     </script>
 </body>

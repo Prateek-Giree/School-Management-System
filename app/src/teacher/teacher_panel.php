@@ -8,7 +8,7 @@
 </head>
 
 <body>
-
+    This is teacher panel
 </body>
 
 </html>

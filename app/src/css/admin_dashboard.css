@@ -1,0 +1,69 @@
+@import url("https://fonts.googleapis.com/css2?family=Rajdhani&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #ECF0F4;
+  font-family: "Rajdhani", sans-serif;
+}
+.main {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid rgb(255, 255, 255);
+  background-color: aliceblue;
+  margin: 2rem 2rem 0 2rem;
+  box-shadow: 10px 10px 90px rgba(0, 0, 0, 0.475);
+}
+
+.main .title {
+  font-size: 25px;
+  color: #030637c9;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: bold;
+  padding: 10px;
+  border-bottom: 1px solid #4f4f50a3;;
+}
+
+.main .report{
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem ;
+}
+
+.report .content{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 30%;
+  height: 100px;
+  border-right: 2px solid rgba(15, 22, 28, 0.593);
+}
+.content .card{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  font-size: 20px;
+  font-weight: 500;
+}
+.card p{
+  font-weight: bold;
+}
+.card a{
+  text-decoration: none;
+  font-size: 18px;
+}
+.card a:hover{
+  text-decoration: underline;
+}
+.content i{
+  font-size: 70px;
+  color: #fff;
+  padding: 10px;
+  background-color: #030637;
+  border-radius: 5px;
+} 

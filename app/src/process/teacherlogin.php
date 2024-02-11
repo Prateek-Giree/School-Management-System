@@ -44,17 +44,16 @@
         $teacher_email = $_POST["email"];
         $password = $_POST["pass"];
 
-        // Include database connection file
+
         include_once "../includes/connection.php";
 
         // Prepare SQL query to check for the teacher
-        $sql = "SELECT * FROM teacher WHERE email=? AND password=?";
+        $sql = "SELECT * FROM user WHERE email=? AND password=?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("ss", $teacher_email, $password);
         $stmt->execute();
         $result = $stmt->get_result();
 
-        // Check if the teacher is found
         if ($result->num_rows > 0) {
             // Teacher found, set session variable and redirect to teacher panel
             $_SESSION["email"] = $teacher_email;
@@ -72,8 +71,8 @@
         $conn->close();
     } else {
         // If form is not submitted via POST method, redirect to login page
-        header("location:login.php");
-        exit(); // Exit to prevent further execution
+        header("location:../../public/index.php");
+        exit();
     }
     ?>
 

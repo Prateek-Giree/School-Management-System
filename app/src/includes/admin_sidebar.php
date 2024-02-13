@@ -20,11 +20,11 @@
         </div>
         <span class="gmail">admin@gmail.com</span>
         <br><br>
-        <li><a href="#">
+        <li><a href="../admin/admin_dashboard.php">
             <i class="fas fa-home"></i>
             <span class="nav-item">Dashboard</span>
           </a></li>
-        <li><a href="#">
+        <li><a href="../pages/class.php">
             <i class="fas fa-users"></i>
             <span class="nav-item">Class</span>
           </a></li>

@@ -36,7 +36,7 @@ if (empty($_SESSION['email'])) {
             integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
             crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="../css/admin_dashboard.css">
-        <title>Admin Panel</title>
+        <title>Admin Panel | Dashboard</title>
     </head>
 
     <body>
@@ -45,9 +45,9 @@ if (empty($_SESSION['email'])) {
             include_once "../includes/admin_sidebar.php";
             ?>
             <div class="outer">
-                <span class="welcome">
-                    <h1>Welcome Admin!</h1>
-                </span>
+                <?php
+                include_once "../includes/header.php";
+                ?>
                 <div class="main">
                     <div class="title">
                         <p>Report Summary</p>

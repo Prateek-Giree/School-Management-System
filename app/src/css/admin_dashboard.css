@@ -18,12 +18,6 @@ body {
   flex-direction: column;
   width: calc(100% - 280px);
 }
-
-.welcome{
-  color: orange;
-  background-color: #fff;
-  padding: 1rem;
-}
 .main {
   display: flex;
   flex-direction: column;

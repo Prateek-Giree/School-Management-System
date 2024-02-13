@@ -7,8 +7,22 @@
 }
 
 body {
-  background-color: #ECF0F4;
+  background-color: #ecf0f4;
   font-family: "Rajdhani", sans-serif;
+}
+.hero {
+  display: flex;
+}
+.outer {
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 280px);
+}
+
+.welcome{
+  color: orange;
+  background-color: #fff;
+  padding: 1rem;
 }
 .main {
   display: flex;
@@ -26,44 +40,47 @@ body {
   text-align: center;
   font-weight: bold;
   padding: 10px;
-  border-bottom: 1px solid #4f4f50a3;;
+  border-bottom: 1px solid #4f4f50a3;
 }
 
-.main .report{
+.main .report {
   display: flex;
   justify-content: space-between;
-  padding: 1rem ;
+  padding: 1rem;
 }
 
-.report .content{
+.report .content {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  width: 30%;
+  width: 400px;
   height: 100px;
   border-right: 2px solid rgba(15, 22, 28, 0.593);
+  padding: 10px;
 }
-.content .card{
+.content .card {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   font-size: 20px;
   font-weight: 500;
 }
-.card p{
+.card p {
   font-weight: bold;
 }
-.card a{
+.card a {
+  color: #030637;
   text-decoration: none;
   font-size: 18px;
 }
-.card a:hover{
+.card a:hover {
   text-decoration: underline;
 }
-.content i{
-  font-size: 70px;
+.content i {
+  font-size: 30px;
+  height: 60px;
   color: #fff;
   padding: 10px;
   background-color: #030637;
   border-radius: 5px;
-} 
+}

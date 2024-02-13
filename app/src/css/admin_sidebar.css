@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/css2?family=Rajdhani&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Rajdhani", sans-serif;
+}
+
+.sms {
+  color: orange;
+  font-size: larger;
+  font-weight: bold;
+  padding: 1rem;
+}
+
+.flexing {
+  display: flex;
+  color: white;
+}
+
+.gmail {
+  display: flex;
+  color: white;
+  margin-left: 70px;
+}
+
+img {
+  height: 40px;
+  margin: 20px 40px;
+  margin-left: 108px;
+  cursor: pointer;
+}
+
+.container {
+  display: flex;
+}
+nav {
+  position: relative;
+  top: 0;
+  bottom: 0;
+  height: 100vh;
+  left: 0;
+  background: #09353c;
+  width: 280px;
+  overflow: hidden;
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.2);
+}
+
+li a {
+  font-weight: 600;
+  position: relative;
+  color: white;
+  font-size: 14px;
+  display: table;
+  width: 280px;
+  padding: 10px;
+  text-decoration: none;
+  transition: 0.4s;
+}
+li a:hover {
+  background: #fff;
+  color: #09353c;
+  font-weight: bold;
+  transition: 0.4s;
+}
+nav .fas {
+  position: relative;
+  width: 70px;
+  height: 40px;
+  top: 4px;
+  font-size: 20px;
+  text-align: center;
+}
+.nav-item {
+  position: relative;
+  margin-left: 20px;
+}
+.logout {
+  position: absolute;
+  bottom: 0;
+}

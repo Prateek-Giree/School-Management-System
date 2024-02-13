@@ -40,38 +40,35 @@
 
     // Check if the form is submitted
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
-        // Retrieve email and password from the form
-        $teacher_email = $_POST["email"];
+
+        $admin_email = $_POST["email"];
         $password = $_POST["pass"];
 
 
         include_once "../includes/connection.php";
 
-        // Prepare SQL query to check for the teacher
-        $sql = "SELECT * FROM user WHERE email=? AND password=? AND role=1";
+        // Prepare SQL query to check for the admin
+        $sql = "SELECT * FROM user WHERE email=? AND password=? AND role=0";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ss", $teacher_email, $password);
+        $stmt->bind_param("ss", $admin_email, $password);
         $stmt->execute();
         $result = $stmt->get_result();
 
         if ($result->num_rows > 0) {
-            // Teacher found, set session variable and redirect to teacher panel
-            $_SESSION["email"] = $teacher_email;
-            header("location:../teacher/teacher_panel.php");
-            exit(); // Exit to prevent further execution
+            // set session variable and redirect to admin panel
+            $_SESSION["email"] = $admin_email;
+            header("location:../admin/admin_dashboard.php");
+            exit();
         } else {
-            // Teacher not found, display error message
-            echo "<p class='message'>Teacher not found! <br> Please ask your administrator to register the teacher or Check if the provided credentials are correct</p>";
-            echo "<br><br>";
-            echo "<div class='back'><a href='../../public/index.php' class='button'>Go to Home page</a></div>";
+            // echo "Invalid credentials";
+            echo "<script>alert('Please enter valid credentials'); window.location.href='../pages/admin_login.php';</script>";
         }
 
-        // Close the database connection
         $stmt->close();
         $conn->close();
     } else {
         // If form is not submitted via POST method, redirect to login page
-        header("location:../../public/index.php");
+        header("location:../pages/admin_login.php");
         exit();
     }
     ?>

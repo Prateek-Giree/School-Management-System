@@ -4,34 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teacher Login</title>
-    <style>
-        .message {
-            text-align: center;
-            font-size: 18px;
-            font-family: monospace;
-        }
-
-        .back {
-            display: flex;
-            justify-content: center;
-        }
-
-        .button {
-            font-family: monospace;
-            background: #085662;
-            color: #fff;
-            border: none;
-            padding: 10px;
-            font-size: 15px;
-            border-radius: 5px;
-            text-decoration: none;
-        }
-
-        .button:hover {
-            background: #0b8fa3;
-        }
-    </style>
+    <title>Admin Login</title>
 </head>
 
 <body>
@@ -61,7 +34,7 @@
             exit();
         } else {
             // echo "Invalid credentials";
-            echo "<script>alert('Please enter valid credentials'); window.location.href='../pages/admin_login.php';</script>";
+            echo "<script>alert('Please enter valid credentials'); window.location.href='../pages/admin_login';</script>";
         }
 
         $stmt->close();

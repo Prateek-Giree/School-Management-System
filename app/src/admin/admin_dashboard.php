@@ -1,12 +1,12 @@
 <?php
 session_start();
-include('../includes/connection.php');
 
 // Redirect to index page if session dont exists
 if (empty($_SESSION['email'])) {
     header('location:../../public/index.php');
     exit();
 } else {
+    include('../includes/connection.php');
     // Query to fetch total number of classes
     $sqlTotalClasses = "SELECT COUNT(*) AS total_classes FROM class";
     $resultTotalClasses = $conn->query($sqlTotalClasses);
@@ -24,6 +24,7 @@ if (empty($_SESSION['email'])) {
     $resultTotalStudents = $conn->query($sqlTotalStudents);
     $rowTotalStudents = $resultTotalStudents->fetch_assoc();
     $totalStudents = $rowTotalStudents['total_students'];
+    $conn->close();
     ?>
 
     <!DOCTYPE html>

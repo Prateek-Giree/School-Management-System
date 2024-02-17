@@ -61,9 +61,7 @@
             exit(); // Exit to prevent further execution
         } else {
             // Teacher not found, display error message
-            echo "<p class='message'>Teacher not found! <br> Please ask your administrator to register the teacher or Check if the provided credentials are correct</p>";
-            echo "<br><br>";
-            echo "<div class='back'><a href='../../public/index.php' class='button'>Go to Home page</a></div>";
+            echo "<script>alert('Teacher not found.'); window.location.href='../../public/index.php';</script>";
         }
 
         // Close the database connection

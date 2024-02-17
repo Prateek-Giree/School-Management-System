@@ -10,9 +10,14 @@ body {
   font-family: "Rajdhani", sans-serif;
   height: 100vh;
   background: linear-gradient(to left, #081b2985, rgba(0, 0, 0, 0.663)),
-    url("../assets/teacher.webp");
+    url("../assets/students.avif") no-repeat;
   background-size: cover;
   background-position: center;
+}
+::placeholder {
+  color: #ffffff;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 17px;
 }
 .container {
   display: flex;
@@ -20,16 +25,17 @@ body {
   align-items: flex-end;
   height: 100vh;
 }
-.content {
+.heading {
   width: 50%;
   margin: 0 0 5rem 5rem;
   color: white;
 }
-.content h1 {
+.heading h1 {
+  color: pink;
   font-size: 3rem;
   margin-bottom: 1rem;
 }
-.content p {
+.heading p {
   font-size: 1.2rem;
   margin-bottom: 1rem;
 }
@@ -45,6 +51,7 @@ body {
   backdrop-filter: blur(4px);
 }
 .signup h1 {
+  color: pink;
   font-size: 30px;
   margin: 0 0 2rem 3rem;
 }
@@ -77,24 +84,24 @@ body {
   letter-spacing: 1px;
   pointer-events: none;
 }
-
-.signup .inputBox input:focus ~ span,
-.signup .inputBox input:valid ~ span {
-  color: #ff9800;
-  font-weight: bold;
-  font-size: 14px;
-  transform: translateY(-20px);
+.gender {
+  font-size: 17px;
+  margin: 2rem 0 0 3rem;
+}
+.gender input[type="radio"] {
+  margin-left: 2rem;
 }
 
 .signup button {
+  font-family: "Rajdhani", sans-serif;
   width: 70%;
-  margin: 2rem 0 0 3rem;
-  padding: 0.5rem;
+  margin: 3rem 0 0 3rem;
+  padding: 2px;
   border: none;
   border-radius: 5px;
   background-color: #00ffea;
   color: #081b29;
-  font-size: 1rem;
+  font-size: 20px;
   font-weight: bold;
   cursor: pointer;
   border: 1px solid #00ffea;
@@ -106,9 +113,27 @@ body {
   border: 1px solid #00ffea;
   box-shadow: #00ffea 0px 0px 10px;
 }
-.signup a {
+
+.btn a {
+  display: inline-block;
   text-decoration: none;
-  color: #ffffff;
-  display: block;
-  margin: 1rem 0 0 3rem;
+  color: #081b29;
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center;
+  width: 70%;
+  margin: 2rem 0 0 3rem;
+  padding: 2px;
+  border: none;
+  border-radius: 5px;
+  background-color: #00ffea;
+  cursor: pointer;
+  border: 1px solid #00ffea;
+  transition: 0.5s;
+}
+.btn a:hover {
+  background-color: #081b29;
+  color: #00ffea;
+  border: 1px solid #00ffea;
+  box-shadow: #00ffea 0px 0px 10px;
 }

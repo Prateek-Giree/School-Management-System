@@ -28,11 +28,11 @@
             <i class="fas fa-users"></i>
             <span class="nav-item">Class</span>
           </a></li>
-        <li><a href="#">
+        <li><a href="../pages/teacher.php">
             <i class="fas fa-user-graduate"></i>
             <span class="nav-item">Teacher</span>
           </a></li>
-        <li><a href="#">
+        <li><a href="../pages/student.php">
             <i class="fas fa-user"></i>
             <span class="nav-item">Student</span>
           </a></li>

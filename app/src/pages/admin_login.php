@@ -11,7 +11,7 @@
 
 <body>
     <div class="loginForm">
-        <form action="../process/adminlogin.php" method="post">
+        <form action="../auth/adminlogin.php" method="post">
             <h2>Login as Admin</h2>
             <div class="inputBox">
                 <input type="text" name="email" id="email" placeholder="Email" required="required" />

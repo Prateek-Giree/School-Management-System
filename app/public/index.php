@@ -38,7 +38,7 @@
                 </div>
 
                 <div class="loginForm">
-                    <form action="../src/process/teacherlogin.php" method="post">
+                    <form action="../src/auth/teacherlogin.php" method="post">
                         <h2>Login as teacher</h2>
                         <div class="inputBox">
                             <input type="text" name="email" id="email" required="required" />

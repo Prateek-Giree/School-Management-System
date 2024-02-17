@@ -17,7 +17,7 @@ if (empty($_SESSION['email'])) {
             integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
             crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="../css/admin_pages.css">
-        <title>Admin Panel | Class</title>
+        <title>Admin Panel | Teacher</title>
     </head>
 
     <body>
@@ -32,8 +32,8 @@ if (empty($_SESSION['email'])) {
                     <?php include_once "../includes/header.php"; ?>
                 </div>
                 <div class="content">
-                    <div class="show"><a href="class_show.php">show classes <i class="fa-regular fa-eye"></i> </a></div>
-                    <div class="add"><a href="class_add.php">Add classes <i class="fa-solid fa-plus"></i> </a></div>
+                    <div class="show"><a href="teacher_show.php">show teacher <i class="fa-regular fa-eye"></i> </a></div>
+                    <div class="add"><a href="teacher_add.php">Add teacher<i class="fa-solid fa-plus"></i> </a></div>
                 </div>
             </div>
         </div>

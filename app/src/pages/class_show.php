@@ -2,6 +2,7 @@
 session_start();
 if (empty($_SESSION['email'])) {
     header("Location:../admin/admin_dashboard.php");
+    exit();
 } else {
     include "../includes/connection.php";
     $sql = "SELECT * FROM class";

@@ -83,6 +83,7 @@ if (empty($_SESSION['email'])) {
         }
     } else {
         header("Location: ../admin/admin_dashboard.php");
+        exit();
     }
 }
 ?>

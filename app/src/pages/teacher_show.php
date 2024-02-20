@@ -2,6 +2,7 @@
 session_start();
 if (empty($_SESSION['email'])) {
     header("Location:../../public/index.php");
+    exit();
 } else {
     include "../includes/connection.php";
     $sql = "SELECT * from user where role=1";

@@ -36,10 +36,6 @@
             <i class="fas fa-user"></i>
             <span class="nav-item">Student</span>
           </a></li>
-        <li><a href="#">
-            <i class="fas fa-search"></i>
-            <span class="nav-item">Search</span>
-          </a></li>
         <li><a href="../pages/logout.php" class="logout">
             <i class="fas fa-sign-out-alt"></i>
             <span class="nav-item">Log out</span>

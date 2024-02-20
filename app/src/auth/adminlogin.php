@@ -34,7 +34,7 @@
             exit();
         } else {
             // echo "Invalid credentials";
-            echo "<script>alert('Please enter valid credentials'); window.location.href='../pages/admin_login';</script>";
+            echo "<script>alert('Please enter valid credentials'); window.location.href='../pages/admin_login.php';</script>";
         }
 
         $stmt->close();

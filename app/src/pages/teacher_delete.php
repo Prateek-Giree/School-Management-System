@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (empty($_SESSION['email'])) {
-    header("Loctation:../../public/index.php");
+    header("Location:../../public/index.php");
 } else {
     ?>
     <!DOCTYPE html>
@@ -33,6 +33,9 @@ if (empty($_SESSION['email'])) {
         } else {
             echo "Error deleting record: " . $conn->error;
         }
+    } else {
+        header("Location: ../admin/admin_dashboard.php");
+        exit();
     }
     $conn->close();
 ?>

@@ -72,5 +72,7 @@ if (empty($_SESSION['email'])) {
 
     </html>
 
-<?php }
+    <?php
+    $conn->close();
+}
 ?>

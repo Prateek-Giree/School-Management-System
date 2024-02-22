@@ -60,7 +60,7 @@ if (empty($_SESSION['email'])) {
                                 <p>
                                     <?php echo $totalClasses; ?>
                                 </p>
-                                <a href="">View class</a>
+                                <a href="../process/class_show.php">View class</a>
                             </div>
                             <i class="fa            s fa-users"></i>
                         </div>
@@ -70,7 +70,7 @@ if (empty($_SESSION['email'])) {
                                 <p>
                                     <?php echo $totalTeachers; ?>
                                 </p>
-                                <a href="">View teachers</a>
+                                <a href="../process/teacher_show.php">View teachers</a>
                             </div>
                             <i class="fa-solid fa-user-graduate"></i>
                         </div>
@@ -80,7 +80,7 @@ if (empty($_SESSION['email'])) {
                                 <p>
                                     <?php echo $totalStudents; ?>
                                 </p>
-                                <a href="">View students</a>
+                                <a href="../process/student_show.php">View students</a>
                             </div>
                             <i class="fa-solid fa-user"></i>
                         </div>

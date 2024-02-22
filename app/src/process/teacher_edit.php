@@ -31,7 +31,7 @@ if (empty($_SESSION['email'])) {
                         <h1>Enter new details.</h1>
                     </div>
                     <div class="signup">
-                        <form action="../process/teacher_update.php" method="post" onclick="return validate();">
+                        <form action="teacher_update.php" method="post" onclick="return validate();">
                             <h1>Register Teacher</h1>
                             <input name="id" type="hidden" value="<?php echo $row['uid']; ?>">
                             <div class="inputBox">

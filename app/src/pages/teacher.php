@@ -32,7 +32,8 @@ if (empty($_SESSION['email'])) {
                     <?php include_once "../includes/header.php"; ?>
                 </div>
                 <div class="content">
-                    <div class="show"><a href="teacher_show.php">show teacher <i class="fa-regular fa-eye"></i> </a></div>
+                    <div class="show"><a href="../process/teacher_show.php">show teacher <i class="fa-regular fa-eye"></i>
+                        </a></div>
                     <div class="add"><a href="teacher_add.php">Add teacher<i class="fa-solid fa-plus"></i> </a></div>
                 </div>
             </div>

@@ -1,3 +1,14 @@
+<?php
+
+include "../includes/connection.php";
+$sql = "SELECT email FROM user where role=0";
+$result = $conn->query($sql);
+if ($result->num_rows > 0) {
+  $row = $result->fetch_assoc();
+  $email = $row['email'];
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,7 +29,9 @@
         <div class="flexing">
           <img src="../assets/pngwing.com.png" class="imagepng" />
         </div>
-        <span class="gmail">admin@gmail.com</span>
+        <span class="gmail">
+          <?php echo $email ?>
+        </span>
         <br><br>
         <li><a href="../admin/admin_dashboard.php">
             <i class="fas fa-home"></i>

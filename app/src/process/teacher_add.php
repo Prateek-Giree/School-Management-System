@@ -16,8 +16,8 @@
         $address = $_POST['address'];
         $contact = $_POST['contact'];
         $role = $_POST['role'];
-        $password = $_POST['password'];
-        $cpassword = $_POST['cpass'];
+        $password = md5($_POST['password']);
+        $cpassword = md5($_POST['cpass']);
 
         if ($password == $cpassword) {
             include_once "../includes/connection.php";

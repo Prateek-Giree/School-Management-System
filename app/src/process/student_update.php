@@ -10,7 +10,8 @@
 <body>
     <?php
     //check if form has been submitted
-    if (isset($_POST['fullname'])) {
+    if (isset($_POST['id'])) {
+        $id = $_POST['id'];
         $name = $_POST['fullname'];
         $father = $_POST['father'];
         $mother = $_POST['mother'];
@@ -29,13 +30,13 @@
         $result = $stmt1->get_result();
 
         if ($result->num_rows > 0) {
-            $sql2 = "INSERT INTO student(name,father,mother,class,address,contact,dob,gender)VALUES(?,?,?,?,?,?,?,?)";
+            $sql2 = "UPDATE  student set name=?,father=?,mother=?,class=?,address=?,contact=?,dob=?,gender=? WHERE sid=?";
             $stmt2 = $conn->prepare($sql2);
-            $stmt2->bind_param("sssissss", $name, $father, $mother, $class, $address, $contact, $dob, $gender);
+            $stmt2->bind_param("sssissssi", $name, $father, $mother, $class, $address, $contact, $dob, $gender, $id);
             if ($stmt2->execute()) {
-                echo " <script>alert('Student registered successfully'); window.location.href='../admin/admin_dashboard.php'; </script>";
+                echo " <script>alert('Details updated successfully'); window.location.href='student_show.php'; </script>";
             } else {
-                echo "<script>alert('Something went wrong'); window.location.href='../pages/student_add.php'; </script>";
+                echo "<script>alert('Something went wrong'); window.location.href='../admin/admin_dashboard.php'; </script>";
 
             }
             $stmt2->close();

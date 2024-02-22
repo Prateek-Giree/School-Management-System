@@ -45,20 +45,21 @@ if (empty($_SESSION['email'])) {
                                     <?php
                                     if ($result->num_rows > 0) {
                                         while ($row = $result->fetch_assoc()) {
+                                            $id = $row['uid'];
                                             echo "<tr>
                                                 <td>" . $row['name'] . "</td>
                                                 <td>" . $row['address'] . "</td>
                                                 <td>" . $row['contact'] . "</td>
                                                 <td>" . $row['email'] . "</td>
                                                 <td><a href='teacher_edit.php?id=" . $row['uid'] . "'><i class='fa-solid fa-pen-to-square'></i></a> ||
-                                                <a href='teacher_delete.php?id=" . $row['uid'] . "'><i class='fa-solid fa-trash'></i></a>
+                                                <a href='javascript:void(0)' class='delete-link' onclick='checkStatus(" . $id . ")' ; '><i class='fa-solid fa-trash'></i></a>
                                                 </td>
                                             </tr>";
                                         }
                                     } else {
                                         echo "<script>
                                              alert('No teacher found!');
-                                             window.location.href='class_show.php';
+                                             window.location.href='../admin/admin_dashboard.php';
                                             </script>";
                                     }
                                     ?>
@@ -70,6 +71,16 @@ if (empty($_SESSION['email'])) {
             </div>
         </div>
     </body>
+    <script>
+        function checkStatus(id) {
+            var status = confirm("Are you sure you want to delete?");
+            if (status) {
+                window.location.href = "teacher_delete.php?id=" + id;
+            } else {
+                window.location.href = "teacher_show.php";
+            }
+        }
+    </script>
 
     </html>
 

@@ -23,7 +23,7 @@
         if ($stmt->execute()) {
             echo " <script>
                             alert('Details updated successfully'); 
-                            window.location.href='../pages/teacher_show.php'; 
+                            window.location.href='../process/teacher_show.php'; 
                         </script>";
         } else {
             echo " <script>

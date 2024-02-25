@@ -34,12 +34,13 @@ img {
 
 .container {
   display: flex;
+  min-height: 100%;
 }
 nav {
   position: relative;
   top: 0;
   bottom: 0;
-  height: 100vh;
+  min-height: 100vh;
   left: 0;
   background: #09353c;
   width: 280px;

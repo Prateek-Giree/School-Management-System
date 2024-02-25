@@ -37,7 +37,7 @@ if (empty($_SESSION['email'])) {
                 </div>
             </div>
         </div>
-
-        <?php
+    </body>
+    <?php
 }
 ?>

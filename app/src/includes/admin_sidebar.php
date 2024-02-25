@@ -16,7 +16,9 @@ if ($result->num_rows > 0) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../css/admin_sidebar.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -48,6 +50,10 @@ if ($result->num_rows > 0) {
         <li><a href="../pages/student.php">
             <i class="fas fa-user"></i>
             <span class="nav-item">Student</span>
+          </a></li>
+        <li><a href="../pages/messages.php">
+            <i class="fas fa-message"></i>
+            <span class="nav-item">Messages</span>
           </a></li>
         <li><a href="../pages/logout.php" class="logout">
             <i class="fas fa-sign-out-alt"></i>

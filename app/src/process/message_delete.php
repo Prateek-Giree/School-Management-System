@@ -22,16 +22,28 @@ if (empty($_SESSION['email'])) {
     include "../includes/connection.php";
     if (isset($_REQUEST['id'])) {
         $id = $_REQUEST['id'];
-        $sql = "DELETE FROM contact WHERE id=$id";
-
-        if ($conn->query($sql) === TRUE) {
-            echo "
-    <script>
-        alert('Record deleted successfully');
-        window.location.href = '../pages/messages.php';
-    </script>";
+        if ($id == -1) {
+            $query = "TRUNCATE TABLE contact";
+            if ($conn->query($query) === TRUE) {
+                echo "
+                <script>
+                alert('All messages deleted successfully');
+                window.location.href = '../pages/messages.php';
+                </script>";
+            } else {
+                echo "Error deleting record: " . $conn->error;
+            }
         } else {
-            echo "Error deleting record: " . $conn->error;
+            $sql = "DELETE FROM contact WHERE id=$id";
+            if ($conn->query($sql) === TRUE) {
+                echo "
+                <script>
+                alert('Record deleted successfully');
+                window.location.href = '../pages/messages.php';
+                </script>";
+            } else {
+                echo "Error deleting record: " . $conn->error;
+            }
         }
     } else {
         header("Location: ../admin/admin_dashboard.php");

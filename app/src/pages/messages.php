@@ -59,7 +59,7 @@ if (empty($_SESSION['email'])) {
 
                                             echo "<tr>
                                                 <td>" . htmlspecialchars($fullname) . "</td>
-                                                <td> <a href='mailto:'" . $email . "'>" . htmlspecialchars($email) . "</td>
+                                                <td> <a href='mailto:'" . $email . "' style='text-decoration:none;'>" . htmlspecialchars($email) . "</td>
                                                 <td> <pre>" . wordwrap(htmlspecialchars($message), 50) . "</pre></td>
                                                 <td>" . htmlspecialchars($time) . "</td>
                                                 <td><a href='javascript:void(0)' onclick='checkStatus(" . $id . ")' ; '><i class='fa-solid fa-trash'></i></a>
@@ -78,6 +78,7 @@ if (empty($_SESSION['email'])) {
                         </table>
                     </div>
                 </div>
+                <a href="javascript:void(0)" onclick="checkStatus(-1);" class="delete">Delete all</a>
             </div>
         </div>
         <script>

@@ -1,5 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Rajdhani&display=swap");
 
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -15,7 +28,7 @@ body {
   width: calc(100% - 280px);
 }
 
-.content { 
+.content {
   width: 100%;
   display: flex;
   justify-content: space-evenly;
@@ -46,8 +59,30 @@ table {
   font-weight: bold;
 }
 
-thead th,
+thead th {
+  padding: 12px 15px;
+}
 tbody th,
 tbody td {
+  font-size: 18px;
   padding: 12px 15px;
+  border-bottom: 1px solid #d3d3d3;
+}
+.delete {
+  width: 150px;
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+  background-color: #085662;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 0 0 1rem 2rem;
+  transition: 0.4s;
+}
+.delete:hover {
+  transition: 0.4s;
+  background-color: #09353c;
 }

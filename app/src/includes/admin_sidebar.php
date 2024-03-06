@@ -5,7 +5,7 @@ $sql = "SELECT email FROM user where role=0";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
   $row = $result->fetch_assoc();
-  $email = $row['email'];
+  $email = $_SESSION['email'];
 }
 ?>
 

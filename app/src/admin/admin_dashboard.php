@@ -8,22 +8,32 @@ if (empty($_SESSION['email'])) {
 } else {
     include('../includes/connection.php');
     // Query to fetch total number of classes
-    $sqlTotalClasses = "SELECT COUNT(*) AS total_classes FROM class";
-    $resultTotalClasses = $conn->query($sqlTotalClasses);
-    $rowTotalClasses = $resultTotalClasses->fetch_assoc();
-    $totalClasses = $rowTotalClasses['total_classes'];
+    $sqlTotolClasses = "SELECT * FROM class";
+    $queryTotalClasses = $conn->query($sqlTotolClasses);
+    $resultTotalClasses = [];
+    while ($row = $queryTotalClasses->fetch_assoc()) {
+        $resultTotalClasses[] = $row;
+    }
+    $totalClasses = count($resultTotalClasses);
 
     // Query to fetch total number of teachers
-    $sqlTotalTeachers = "SELECT COUNT(*) AS total_teachers FROM user where role=1";
-    $resultTotalTeachers = $conn->query($sqlTotalTeachers);
-    $rowTotalTeachers = $resultTotalTeachers->fetch_assoc();
-    $totalTeachers = $rowTotalTeachers['total_teachers'];
+    $sqlTotolTeachers = "SELECT * FROM user";
+    $queryTotalTeachers = $conn->query($sqlTotolTeachers);
+    $resultTotalTeachers = [];
+    while ($row = $queryTotalTeachers->fetch_assoc()) {
+        $resultTotalTeachers[] = $row;
+    }
+    $totalTeachers = count($resultTotalTeachers);
 
     // Query to fetch total number of students
-    $sqlTotalStudents = "SELECT COUNT(*) AS total_students FROM student";
-    $resultTotalStudents = $conn->query($sqlTotalStudents);
-    $rowTotalStudents = $resultTotalStudents->fetch_assoc();
-    $totalStudents = $rowTotalStudents['total_students'];
+    $sqlTotolStudents = "SELECT * FROM student";
+    $queryTotalStudents = $conn->query($sqlTotolStudents);
+    $resultTotalStudents = [];
+    while ($row = $queryTotalStudents->fetch_assoc()) {
+        $resultTotalStudents[] = $row;
+    }
+    $totalStudents = count($resultTotalStudents);
+
     $conn->close();
     ?>
 

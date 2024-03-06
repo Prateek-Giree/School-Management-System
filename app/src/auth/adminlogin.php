@@ -15,15 +15,15 @@
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         $admin_email = $_POST["email"];
-        $password = $_POST["pass"];
-
+        $password = md5($_POST["pass"]);
 
         include_once "../includes/connection.php";
 
         // Prepare SQL query to check for the admin
-        $sql = "SELECT * FROM user WHERE email=? AND password=? AND role=0";
+        $sql = "SELECT * FROM user WHERE email=? AND password=? AND role=?";
+        $role = 0; //for admin
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ss", $admin_email, $password);
+        $stmt->bind_param("ssi", $admin_email, $password, $role);
         $stmt->execute();
         $result = $stmt->get_result();
 

@@ -5,8 +5,8 @@ if (empty($_SESSION['email'])) {
     exit();
 } else {
     include "../includes/connection.php";
-    $sql = "SELECT * from student";
-    $result = $conn->query($sql);
+    $query = "SELECT * from student";
+    $result_set = $conn->query($query);
     ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -14,88 +14,87 @@ if (empty($_SESSION['email'])) {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-            integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-            crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <title>Admin Panel | class details</title>
+        <title>Admin panel | View students</title>
+        <link rel="stylesheet" href="../css/view_table.css">
     </head>
 
-    <body style="background:gainsboro">
+    <body>
         <div class="container">
-            <div class="row mt-5">
-                <div class="col">
-                    <div class="card mt-5">
-                        <div class="card-header">
-                            <h2 class="display-6 text-center">
-                                Student details
-                            </h2>
-                        </div>
-                        <div class="card-body">
-                            <table class="table table-bordered text-center">
-                                <tr>
+            <div class="left">
+                <?php
+                include_once "../includes/admin_sidebar.php";
+                ?>
+            </div>
+            <div class="right">
+                <div class="include">
+                    <?php include_once "../includes/header.php"; ?>
+                </div>
+                <div class="content" style="display:block;">
+                    <div>
+                        <table class="content-table">
+                            <thead>
+                                <tr class='title'>
+                                    <th colspan="9">
+                                        <h1> View Students</h1>
+                                    </th>
+                                </tr>
+                                <tr class="heading">
                                     <th>Name</th>
                                     <th>Address</th>
                                     <th>Contact</th>
-                                    <th>Father</th>
-                                    <th>Mother</th>
+                                    <th>Parents</th>
                                     <th>Admission Date</th>
                                     <th>Class</th>
                                     <th>Gender</th>
                                     <th>Date of birth</th>
                                     <th>Action</th>
                                 </tr>
-                                <tr>
+                            </thead>
+                            <tbody>
+                                <tr style="text-align:justify;">
                                     <?php
-                                    if ($result->num_rows > 0) {
-                                        while ($row = $result->fetch_assoc()) {
-                                            $id = $row['sid'];
+                                    if ($result_set->num_rows > 0) {
+                                        while ($data = $result_set->fetch_assoc()) {
                                             echo "<tr>
-                                                <td>" . $row['name'] . "</td>
-                                                <td>" . $row['address'] . "</td>
-                                                <td>" . $row['contact'] . "</td>
-                                                <td>" . $row['father'] . "</td>
-                                                <td>" . $row['mother'] . "</td>
-                                                <td>" . $row['admission'] . "</td>
-                                                <td>" . $row['class'] . "</td>
-                                                <td>" . $row['gender'] . "</td>
-                                                <td>" . $row['dob'] . "</td>
-                                                <td><a href='student_edit.php?id=" . $row['sid'] . "'><i class='fa-solid fa-pen-to-square'></i></a> ||
-                                                <a href='javascript:void(0)' class='delete-link' onclick='checkStatus(" . $id . ")' ; '><i class='fa-solid fa-trash'></i></a>
+                                            <td>" . $data['name'] . "</td>
+                                            <td>" . $data['address'] . "</td>
+                                            <td>" . $data['contact'] . "</td>
+                                            <td>" . $data['father'] ?><br>
+                                            <?php echo $data['mother'] . "</td>
+                                            <td>" . $data['admission'] . "</td>
+                                            <td>" . $data['class'] . "</td>
+                                            <td>" . $data['gender'] . "</td>
+                                            <td>" . $data['dob'] . "</td>                                                
+                                            <td><a href='student_edit.php?id=" . $data['sid'] . "'><i class='fa-solid fa-pen-to-square'  style='color:#2f7999;'></i></a> ||
+                                                <a href='javascript:void(0)' class='delete-link' onclick='checkStatus(" . $data['sid'] . ")' ; '><i class='fa-solid fa-trash'  style='color:#2f7999;'></i></a>
                                                 </td>
                                             </tr>";
                                         }
                                     } else {
                                         echo "<script>
-                                             alert('No student found!');
+                                             alert('No student found!'); 
                                              window.location.href='../admin/admin_dashboard.php';
                                             </script>";
                                     }
                                     ?>
                                 </tr>
-                            </table>
-                        </div>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-            </div>
-        </div>
-        <script>
-            function checkStatus(id) { 
-                var status = confirm("Are you sure you want to delete?");
-                if (status) {
-                    window.location.href = "student_delete.php?id=" + id;
-                } else {
-                    window.location.href = "student_show.php";
-                }
-            }
-        </script>
-
+                <script>
+                    function checkStatus(id) {
+                        var status = confirm("Are you sure you want to delete?");
+                        if (status) {
+                            window.location.href = "student_delete.php?id=" + id;
+                        } else {
+                            window.location.href = "student_show.php";
+                        }
+                    }
+                </script>
     </body>
 
     </html>
-
     <?php
-    $conn->close();
 }
 ?>

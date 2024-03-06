@@ -8,15 +8,20 @@
 }
 
 .sms {
+  height: 10px;
   color: orange;
   font-size: larger;
   font-weight: bold;
   padding: 1rem;
+  margin-top: 8px;
+  display: block;
 }
 
 .flexing {
   display: flex;
   color: white;
+  justify-content: center;
+  margin-bottom: 10px;
 }
 
 .gmail {
@@ -27,8 +32,6 @@
 
 img {
   height: 40px;
-  margin: 20px 40px;
-  margin-left: 108px;
   cursor: pointer;
 }
 

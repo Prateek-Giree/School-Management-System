@@ -15,7 +15,7 @@ if (empty($_SESSION['email'])) {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Admin panel | Messages</title>
-        <link rel="stylesheet" href="../css/messages.css">
+        <link rel="stylesheet" href="../css/view_table.css">
     </head>
 
     <body>
@@ -34,7 +34,7 @@ if (empty($_SESSION['email'])) {
                         <table class="content-table">
                             <thead>
                                 <tr class='title'>
-                                    <th colspan="4">
+                                    <th colspan="5">
                                         <h1> View Messages</h1>
                                     </th>
                                 </tr>
@@ -62,7 +62,7 @@ if (empty($_SESSION['email'])) {
                                                 <td> <a href='mailto:'" . $email . "' style='text-decoration:none;'>" . htmlspecialchars($email) . "</td>
                                                 <td> <pre>" . wordwrap(htmlspecialchars($message), 50) . "</pre></td>
                                                 <td>" . htmlspecialchars($time) . "</td>
-                                                <td><a href='javascript:void(0)' onclick='checkStatus(" . $id . ")' ; '><i class='fa-solid fa-trash'></i></a>
+                                                <td><a href='javascript:void(0)' onclick='checkStatus(" . $id . ")' ; '><i class='fa-solid fa-trash'  style='color:#2f7999;'></i></a>
                                                 </td>
                                             </tr>";
                                         }

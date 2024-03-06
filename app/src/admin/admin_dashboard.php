@@ -17,7 +17,7 @@ if (empty($_SESSION['email'])) {
     $totalClasses = count($resultTotalClasses);
 
     // Query to fetch total number of teachers
-    $sqlTotolTeachers = "SELECT * FROM user";
+    $sqlTotolTeachers = "SELECT * FROM user where role=1";
     $queryTotalTeachers = $conn->query($sqlTotolTeachers);
     $resultTotalTeachers = [];
     while ($row = $queryTotalTeachers->fetch_assoc()) {

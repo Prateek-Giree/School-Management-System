@@ -29,7 +29,7 @@ if (empty($_SESSION['email'])) {
                 <div class="include">
                     <?php include_once "../includes/header.php"; ?>
                 </div>
-                <div class="content" style="display:block;">
+                <div class="content">
                     <div>
                         <table class="content-table">
                             <thead>
@@ -45,6 +45,7 @@ if (empty($_SESSION['email'])) {
                                     <th>Parents</th>
                                     <th>Admission Date</th>
                                     <th>Class</th>
+                                    <th>Roll no.</th>
                                     <th>Gender</th>
                                     <th>Date of birth</th>
                                     <th>Action</th>
@@ -63,9 +64,10 @@ if (empty($_SESSION['email'])) {
                                             <?php echo $data['mother'] . "</td>
                                             <td>" . $data['admission'] . "</td>
                                             <td>" . $data['class'] . "</td>
+                                            <td>1</td>
                                             <td>" . $data['gender'] . "</td>
                                             <td>" . $data['dob'] . "</td>                                                
-                                            <td><a href='student_edit.php?id=" . $data['sid'] . "'><i class='fa-solid fa-pen-to-square'  style='color:#2f7999;'></i></a> ||
+                                            <td><a href='student_edit.php?id=" . $data['sid'] . "'><i class='fa-solid fa-pen-to-square'  style='color:#2f7999;'></i></a>|
                                                 <a href='javascript:void(0)' class='delete-link' onclick='checkStatus(" . $data['sid'] . ")' ; '><i class='fa-solid fa-trash'  style='color:#2f7999;'></i></a>
                                                 </td>
                                             </tr>";
@@ -96,5 +98,6 @@ if (empty($_SESSION['email'])) {
 
     </html>
     <?php
+    $conn->close();
 }
 ?>

@@ -20,11 +20,22 @@ if (empty($_SESSION['email'])) {
             $id = $_REQUEST['id'];
             $sql = "DELETE FROM student WHERE sid=$id";
             if ($conn->query($sql) === TRUE) {
-                echo "
-                <script>
-                    alert('Record deleted successfully');
-                    window.location.href = 'student_show.php';
-                </script>";
+                if (isset($_REQUEST['class'])) {
+                    $class = $_REQUEST['class'];
+                    ?>
+                    <script>
+                        alert('Record deleted successfully');
+                        window.location.href = 'class_details.php?id=' + <?php echo $class ?>;
+                    </script>";
+                    <?php
+                } else {
+                    echo "
+                    <script>
+                        alert('Record deleted successfully');
+                        window.location.href = 'student_show.php';
+                    </script>";
+                }
+
             } else {
                 echo "Error deleting record: " . $conn->error;
             }

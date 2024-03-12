@@ -60,9 +60,15 @@ if (empty($_SESSION['email'])) {
             if (!empty($errors)) {
                 foreach ($errors as $error) {
                     // echo "<p>{$error}<p>";
-                    echo "<script>alert('{$error}');
-                    window.location.href = '../pages/teacher_add.php';
-                    </script>";
+                    if (isset($_REQUEST['url'])) {
+                        echo "<script>alert('{$error}');
+                            window.location.href = '../pages/admin_profile.php#admin';
+                            </script>";
+                    } else {
+                        echo "<script>alert('{$error}');
+                                    window.location.href = '../pages/teacher_add.php';
+                            </script>";
+                    }
 
                 }
             } else {
@@ -75,9 +81,17 @@ if (empty($_SESSION['email'])) {
                 $cpassword = md5(trim($_POST['cpass']));
 
                 if ($password != $cpassword) {
-                    echo "<script>alert('Password and confirm password did not match');
-                    window.location.href = '../pages/teacher_add.php';
-                    </script>";
+                    //For admin registration via admin setting page
+                    if (isset($_REQUEST['urladmin'])) {
+                        echo "<script>alert('Password and confirm password did not match');
+                            window.location.href = '../pages/admin_profile.php#admin';
+                            </script>";
+                    } else {
+                        echo "<script>alert('Password and confirm password did not match');
+                                    window.location.href = '../pages/teacher_add.php';
+                            </script>";
+                    }
+
                 } else {
                     try {
                         // Prepare and execute SQL statement
@@ -95,11 +109,17 @@ if (empty($_SESSION['email'])) {
                             exit();
                         }
                     } catch (Exception $e) {
-                        ?>
-                        <script>alert("Teacher with this contact info already exist");
-                            window.location.href = '../pages/teacher_add.php';
-                        </script>
-                        <?php
+                        //For admin registration via admin setting page
+                        if (isset($_REQUEST['urladmin'])) {
+                            echo "<script>alert('Admin with this contact info already exists');
+                                window.location.href = '../pages/admin_profile.php#admin';
+                                </script>";
+                        } else {
+                            echo "<script>alert('Teacher with this contact info already exists');
+                                        window.location.href = '../pages/teacher_add.php';
+                                </script>";
+                        }
+
                     }
                 }
             }

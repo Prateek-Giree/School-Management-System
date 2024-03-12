@@ -7,18 +7,15 @@
   font-family: "Rajdhani", sans-serif;
 }
 
-.container {
+.box {
   background: gainsboro;
   border: 1px solid black;
   width: 300px;
   height: 200px;
   border-radius: 10px;
-  position: absolute;
-  top: 30%;
-  left: 40%;
 }
 
-.content {
+.input {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -26,12 +23,16 @@
   align-items: center;
   margin-top: 40px;
 }
-
+.input span{
+  color: rgb(221, 60, 31);
+  font-weight: bold;
+  height: 5px;
+}
 .inputbox {
   text-align: center;
   height: 30px;
   border-radius: 5px;
-  width: 100px;
+  width: 150px;
   font-size: 20px;
   font-weight: bold;
 }
@@ -42,7 +43,7 @@
 }
 
 input[type="submit"] {
-  background-color:#085662;
+  background-color: #085662;
   color: white;
   padding: 7px 20px;
   border: none;
@@ -52,5 +53,5 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-  background-color:#087687;
+  background-color: #087687;
 }

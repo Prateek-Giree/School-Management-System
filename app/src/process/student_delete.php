@@ -23,6 +23,7 @@ if (empty($_SESSION['email'])) {
                 if (isset($_REQUEST['class'])) {
                     $class = $_REQUEST['class'];
                     ?>
+                    <!-- Deleting student via class detail page -->
                     <script>
                         alert('Record deleted successfully');
                         window.location.href = 'class_details.php?id=' + <?php echo $class ?>;

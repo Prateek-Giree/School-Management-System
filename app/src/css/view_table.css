@@ -44,6 +44,7 @@ table {
   margin: 25px;
   font-size: 0.9em;
   min-width: 400px;
+  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.1);
 }
 
 .content-table .title h1 {

@@ -1,13 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-
-<body>
-    <?php
+<?php
+session_start();
+if (empty($_SESSION['email'])) {
+    header('location:../../public/index.php');
+    exit();
+} else {
     //check if form has been submitted
     if (isset($_POST['fullname'])) {
         $id = $_POST['id'];
@@ -21,10 +17,21 @@
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("ssssi", $name, $email, $address, $contact, $id);
         if ($stmt->execute()) {
-            echo " <script>
-                            alert('Details updated successfully'); 
-                            window.location.href='../process/teacher_show.php'; 
-                        </script>";
+            //For admin
+            if (isset($_POST['urladmin'])) {
+                //changing session email to new email
+                $_SESSION['email'] = $email;
+                echo " <script>
+                alert('Details updated successfully');
+                window.location.href='../pages/admin_profile.php'; 
+                </script>";
+            } else {
+                //For teacher
+                echo " <script>
+                alert('Details updated successfully'); 
+                window.location.href='../process/teacher_show.php'; 
+                </script>";
+            }
         } else {
             echo " <script>
                             alert('Something went wrong'); 
@@ -37,10 +44,7 @@
 
 
     } else {
-        header("Location: ../../public/index.php");
+        header("Location: ../admin/admin_dashboard.php");
         exit();
     }
-    ?>
-</body>
-
-</html>
+}

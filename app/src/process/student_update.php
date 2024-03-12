@@ -1,14 +1,9 @@
-<!-- ADD STUDENT DATA IN DATABASE -->
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-
-<body>
-    <?php
+<?php
+session_start();
+if (empty($_SESSION['email'])) {
+    header('location:../../public/index.php');
+    exit();
+} else {
     //check if form has been submitted
     if (isset($_POST['id'])) {
         $id = $_POST['id'];
@@ -47,10 +42,7 @@
         $stmt1->close();
         $conn->close();
     } else {
-        header("Location: ../../public/index.php");
+        header("Location: ../admin/admin_dashboard.php");
         exit();
     }
-    ?>
-</body>
-
-</html>
+}

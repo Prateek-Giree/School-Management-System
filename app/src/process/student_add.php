@@ -25,6 +25,7 @@ if (empty($_SESSION['email'])) {
 
             $fields = array(
                 "fullname" => "Full Name",
+                "roll" => "Roll number",
                 "father" => "Father's Name",
                 "mother" => "Mother's Name",
                 "class" => "Class",
@@ -40,6 +41,8 @@ if (empty($_SESSION['email'])) {
                     $errors[$field] = "{$field} is invalid ";
                 } elseif ($field == "fullname" && !preg_match("/^[a-zA-Z ]{4,}$/", $_POST[$field])) {
                     $errors[$field] = "Name should only contain alphabet and be at least 4 characters long";
+                } elseif ($field == "roll" && !preg_match("/^[0-9]{1,}$/", $_POST[$field])) {
+                    $error[$field] = "{$label} is invalid";
                 } elseif ($field == "father" && !preg_match("/^[a-zA-Z ]{4,}$/", $_POST[$field])) {
                     $errors[$field] = "Name should only contain alphabet and be at least 4 characters long";
                 } elseif ($field == "mother" && !preg_match("/^[a-zA-Z ]{4,}$/", $_POST[$field])) {
@@ -71,11 +74,11 @@ if (empty($_SESSION['email'])) {
                 $father = trim($_POST['father']);
                 $mother = trim($_POST['mother']);
                 $class = intval($_POST['class']);
+                $roll = intval($_POST['roll']);
                 $address = trim($_POST['address']);
                 $contact = trim($_POST['contact']);
                 $dob = $_POST['dob'];
                 $gender = $_POST['gender'];
-
                 //check if class exists
                 try {
                     $sql1 = "SELECT * FROM class WHERE grade=?";
@@ -83,31 +86,52 @@ if (empty($_SESSION['email'])) {
                     $stmt1->bind_param("i", $class);
                     $stmt1->execute();
                     $result = $stmt1->get_result();
-
+                    $stmt2 = null;
                     if ($result->num_rows > 0) {
                         try {
-                            $sql2 = "INSERT INTO student(name,father,mother,class,address,contact,dob,gender)VALUES(?,?,?,?,?,?,?,?)";
+                            $sql2 = "INSERT INTO student(name,father,mother,class,roll,address,contact,dob,gender)VALUES(?,?,?,?,?,?,?,?,?)";
                             $stmt2 = $conn->prepare($sql2);
-                            $stmt2->bind_param("sssissss", $name, $father, $mother, $class, $address, $contact, $dob, $gender);
+                            $stmt2->bind_param("sssiissss", $name, $father, $mother, $class, $roll, $address, $contact, $dob, $gender);
                             if ($stmt2->execute()) {
                                 echo " <script>alert('Student registered successfully'); window.location.href='../admin/admin_dashboard.php'; </script>";
                             } else {
                                 echo "<script>alert('Something went wrong'); window.location.href='../pages/student_add.php'; </script>";
                             }
                         } catch (Exception $e) {
-                            echo '
-                            <script>alert("Student with this contact info already exists' . '\n' . $e->getMessage() . '");
+                            if ($e->getCode() == 1062) {
+                                // echo '
+                                // <script>alert("Duplicate record");
+                                // window.location.href = "../pages/student_add.php";
+                                // </script>';
+                                preg_match("/Duplicate entry '(.+)' for key '(.+)'/", $e->getMessage(), $matches);
+                                if (isset($matches[1]) && preg_match("/($class+)-($roll)/", $matches[1])) {
+                                    $violatingData = "Class: $class, Roll: $roll";
+                                } else {
+                                    $violatingData = $matches[1];
+                                }
+                                echo '
+                                <script>
+                                    alert("Student with following record: ' . '\n' . $violatingData . ' already exists");
+                                    window.location.href = "../pages/student_add.php";
+                                </script>';
+
+                            } else {
+                                echo '
+                                <script>alert("Error occured while inserting data' . '\n' . $e->getMessage() . '");
                                 window.location.href = "../pages/student_add.php";
-                            </script>';
+                                </script>';
+                            }
                         } finally {
-                            $stmt2->close();
+                            if ($stmt2 !== null) {
+                                $stmt2->close();
+                            }
                         }
 
                     } else {
                         echo "<script>
                     alert('Class do not exist'); 
                     window.location.href='../pages/student_add.php'; 
-                    </script>";
+                    </>";
                     }
                 } catch (Exception $e) {
                     echo "<script>
@@ -115,7 +139,9 @@ if (empty($_SESSION['email'])) {
                     window.location.href='../pages/student_add.php'; 
                     </script>";
                 } finally {
-                    $stmt1->close();
+                    if ($stmt1 !== null) {
+                        $stmt1->close();
+                    }
                 }
             }
             $conn->close();

@@ -125,7 +125,7 @@ if (empty($_SESSION['email'])) {
                 </div>
                 <div class="newAdmin">
                     <h1 id="admin">Add New Admin</h1>
-                    <form action="../process/teacher_add.php?" method="post">
+                    <form action="../process/teacher_add.php" method="post">
                         <input type="hidden" name="urladmin" value="-1">
                         <div class="inputbox">
                             <label for="">Full Name:</label>

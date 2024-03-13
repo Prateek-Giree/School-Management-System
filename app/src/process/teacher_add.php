@@ -44,6 +44,8 @@ if (empty($_SESSION['email'])) {
                     $errors[$field] = "{$_POST[$field]} is invalid email format";
                 } elseif ($field == "contact" && !preg_match("/^(98|97)\d{8}$/", $_POST[$field])) {
                     $errors[$field] = "{$_POST[$field]} is invalid contact number";
+                } elseif ($field == "role" && ($_POST[$field] != 0 || $_POST[$field] != 1)) {
+                    $errors[$field] = "{$label} is invalid ";
                 } elseif ($field == "password") {
                     if (strlen($_POST[$field]) < 8) {
                         $errors[$field] = "{$label} should be at least 8 characters long";

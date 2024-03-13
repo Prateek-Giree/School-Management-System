@@ -5,7 +5,7 @@ if (empty($_SESSION['email'])) {
     exit();
 } else {
     include "../includes/connection.php";
-    $query = "SELECT * from student";
+    $query = "SELECT * from student order by class,roll";
     $result_set = $conn->query($query);
     ?>
     <!DOCTYPE html>
@@ -64,7 +64,7 @@ if (empty($_SESSION['email'])) {
                                             <?php echo $data['mother'] . "</td>
                                             <td>" . $data['admission'] . "</td>
                                             <td>" . $data['class'] . "</td>
-                                            <td>1</td>
+                                            <td>" . $data['roll'] . "</td>
                                             <td>" . $data['gender'] . "</td>
                                             <td>" . $data['dob'] . "</td>                                                
                                             <td><a href='student_edit.php?id=" . $data['sid'] . "'><i class='fa-solid fa-pen-to-square'  style='color:#2f7999;'></i></a>|

@@ -22,58 +22,61 @@ if (empty($_SESSION['email'])) {
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <title>Admin Panel | Edit teacher</title>
-                <link rel="stylesheet" href="../css/teacher_add.css">
+                <link rel="stylesheet" href="../css/admin_pages.css">
+                <link rel="stylesheet" href="../css/admin_profile.css">
             </head>
 
             <body>
                 <div class="container">
-                    <div class="content">
-                        <h1>Enter new details.</h1>
+                    <div class="left">
+                        <?php
+                        include_once "../includes/admin_sidebar.php";
+                        ?>
                     </div>
-                    <div class="signup">
-                        <form action="teacher_update.php" method="post" onclick="return validate();">
-                            <h1>Register Teacher</h1>
-                            <input name="id" type="hidden" value="<?php echo $row['uid']; ?>">
-                            <div class="inputBox">
-                                <input name="fullname" type="text" id="fullname" value="<?php echo $row['name']; ?>"
-                                    placeholder="Full Name" required>
-                            </div>
-                            <div class="inputBox">
-                                <input name="email" type="text" id="email" value="<?php echo $row['email']; ?>" placeholder="Email"
-                                    required>
-                            </div>
-                            <div class="inputBox">
-                                <input name="address" type="text" id="address" value="<?php echo $row['address']; ?>"
-                                    placeholder="Address" required>
-                            </div>
-                            <div class="inputBox">
-                                <input name="contact" type="text" id='contact' value="<?php echo $row['contact']; ?>"
-                                    placeholder="Contact" required>
-                            </div>
-                            <!-- <div class="role">
-                                <label>Role: </label>
-                                <input type="radio" name="role" value="0">
-                                Admin
-                                <input type="radio" name="role" value="1" checked>
-                                Teacher
-                            </div>
+                    <div class="right">
+                        <div class="include">
+                            <?php include_once "../includes/header.php"; ?>
+                        </div>
 
-                            <div class="inputBox">
-                                <input name="password" type="password" id="password" placeholder="Password" required>
-                            </div>
-                            <div class="inputBox">
-                                <input type="password" name="cpass" id="cpassword" placeholder="Confirm Password" required>
-                            </div> -->
+                        <div class="newAdmin">
+                            <h1 id="admin">Update teacher details</h1>
+                            <form action="../process/teacher_update.php" method="post">
+                                <input type="hidden" name="id" value="<?php echo $row['uid']; ?>">
+                                <div class="inputbox">
+                                    <label for="">Full Name:</label>
+                                    <input type="text" name="fullname" id="fullname" value="<?php echo $row['name']; ?>"
+                                        placeholder="Full Name" required>
+                                    <span></span>
+                                </div>
+                                <div class="inputbox">
+                                    <label for="">Email:</label>
+                                    <input name="email" type="text" id="email" value="<?php echo $row['email']; ?>"
+                                        placeholder="Email" required>
+                                    <span></span>
+                                </div>
+                                <div class="inputbox">
+                                    <label for="">Address:</label>
+                                    <input name="address" type="text" id="address" value="<?php echo $row['address']; ?>"
+                                        placeholder="Address" required>
+                                    <span></span>
+                                </div>
+                                <div class="inputbox">
+                                    <label for="">Contact:</label>
+                                    <input name="contact" type="text" id="contact" value="<?php echo $row['contact']; ?>"
+                                        placeholder="Contact" required>
+                                    <span></span>
+                                </div>
+                                <div class="inputbox">
+                                    <input type="submit" value="Update">
+                                </div>
+                            </form>
+                        </div>
 
-
-                            <button type="submit">Register</button>
-
-                            <div class="btn">
-                                <a href="../admin/admin_dashboard.php">Back to dashboard</a>
-                            </div>
-                        </form>
                     </div>
                 </div>
+                <script>
+                    document.getElementById("role").value = "Teacher";
+                </script>
             </body>
 
             </html>

@@ -7,63 +7,83 @@ if (empty($_SESSION['email'])) {
     exit();
 } else {
     ?>
+
     <!DOCTYPE html>
     <html lang="en">
 
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Register Teacher</title>
-        <link rel="stylesheet" href="../css/teacher_add.css">
+        <title>Admin panel | Add teacher</title>
+        <link rel="stylesheet" href="../css/admin_pages.css">
+        <link rel="stylesheet" href="../css/admin_profile.css">
+        <style>
+        </style>
     </head>
 
     <body>
         <div class="container">
-            <div class="content">
-                <h1>Register new teacher or<br> admin here.</h1>
+            <div class="left">
+                <?php
+                include_once "../includes/admin_sidebar.php";
+                ?>
             </div>
-            <div class="signup">
-                <form action="../process/teacher_add.php" method="post" onclick="return validate();">
-                    <h1>Register Teacher</h1>
-                    <div class="inputBox">
-                        <input name="fullname" type="text" id="fullname" placeholder="Full Name" required>
-                    </div>
-                    <div class="inputBox">
-                        <input name="email" type="text" id="email" placeholder="Email" required>
-                    </div>
-                    <div class="inputBox">
-                        <input name="address" type="text" id="address" placeholder="Address" required>
-                    </div>
-                    <div class="inputBox">
-                        <input name="contact" type="text" id='contact' placeholder="Contact" required>
-                    </div>
-                    <div class="role">
-                        <label>Role: </label>
-                        <input type="radio" name="role" value="0">
-                        Admin
-                        <input type="radio" name="role" value="1" checked>
-                        Teacher
-                    </div>
+            <div class="right">
+                <div class="include">
+                    <?php include_once "../includes/header.php"; ?>
+                </div>
 
-                    <div class="inputBox">
-                        <input name="password" type="password" id="password" placeholder="Password" required>
-                    </div>
-                    <div class="inputBox">
-                        <input type="password" name="cpass" id="cpassword" placeholder="Confirm Password" required>
-                    </div>
+                <div class="newAdmin">
+                    <h1 id="admin">Register new teacher</h1>
+                    <form action="../process/teacher_add.php" method="post">
+                        <input type="hidden" name="urladmin" value="-1">
+                        <div class="inputbox">
+                            <label for="">Full Name:</label>
+                            <input type="text" name="fullname" id="fullname" placeholder="Full Name" required>
+                            <span></span>
+                        </div>
+                        <div class="inputbox">
+                            <label for="">Email:</label>
+                            <input name="email" type="text" id="email" placeholder="Email" required>
+                            <span></span>
+                        </div>
+                        <div class="inputbox">
+                            <label for="">Address:</label>
+                            <input name="address" type="text" id="address" placeholder="Address" required>
+                            <span></span>
+                        </div>
+                        <div class="inputbox">
+                            <label for="">Contact:</label>
+                            <input name="contact" type="text" id="contact" placeholder="Contact" required>
+                            <span></span>
+                        </div>
+                        <div class="inputbox">
+                            <label for="">Role:</label>
+                            <input name="role" type="text" id="role" value="Teacher" readonly>
+                            <span></span>
+                        </div>
+                        <div class="inputbox">
+                            <label for="">Password:</label>
+                            <input name="password" type="password" id="password" placeholder="Password" required>
+                            <span></span>
+                        </div>
+                        <div class="inputbox">
+                            <label for="">Confirm Password:</label>
+                            <input name="cpass" type="password" id="cpassword" placeholder="Confirm Password" required>
+                            <span></span>
+                        </div>
+                        <div class="inputbox">
+                            <input type="submit" value="Register">
+                        </div>
+                    </form>
+                </div>
 
-
-                    <button type="submit">Register</button>
-
-                    <div class="btn">
-                        <a href="../admin/admin_dashboard.php">Back to dashboard</a>
-                    </div>
-                </form>
             </div>
         </div>
     </body>
 
     </html>
-<?php
+
+    <?php
 }
 ?>

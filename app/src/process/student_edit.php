@@ -23,63 +23,100 @@ if (empty($_SESSION['email'])) {
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <title>Admin panel | Edit student</title>
-                <link rel="stylesheet" href="../css/student_add.css">
+                <link rel="stylesheet" href="../css/admin_pages.css">
+                <link rel="stylesheet" href="../css/admin_profile.css">
                 <style>
                 </style>
             </head>
 
             <body>
                 <div class="container">
-                    <div class="heading">
-                        <h1>Enter new details.</h1>
+                    <div class="left">
+                        <?php
+                        include_once "../includes/admin_sidebar.php";
+                        ?>
                     </div>
-                    <div class="signup">
-                        <form action="student_update.php" method="post" onclick="return validate();">
-                            <h1>Fill the form.</h1>
-                            <input name="id" type="hidden" value="<?php echo $row['sid']; ?>">
-                            <div class="inputBox">
-                                <input type="text" id="fullname" name="fullname" value="<?php echo $row['name'] ?>"
-                                    placeholder="Full Name" required>
-                            </div>
-                            <div class="inputBox">
-                                <input type="text" id="" name="father" value="<?php echo $row['father'] ?>"
-                                    placeholder="Father's Name" required>
-                            </div>
-                            <div class="inputBox">
-                                <input type="text" id="" name="mother" value="<?php echo $row['mother'] ?>"
-                                    placeholder="Mother's Name" required>
-                            </div>
-                            <div class="inputBox">
-                                <input type="number" id="class" name="class" value="<?php echo $row['class'] ?>" placeholder="Class"
-                                    min="1" max="10" required>
-                            </div>
-                            <div class="inputBox">
-                                <input type="text" id="address" name="address" value="<?php echo $row['address'] ?>"
-                                    placeholder="Address" required>
-                            </div>
-                            <div class="inputBox">
-                                <input type="text" id="contact" name="contact" value="<?php echo $row['contact'] ?>"
-                                    placeholder="Contact no." required>
-                            </div>
-                            <div class="inputBox">
-                                <input type="text" id="dob" name="dob" value="<?php echo $row['dob'] ?>" placeholder="Date of birth"
-                                    onfocus="(this.type='date')" required>
-                            </div>
-                            <div class="gender">
-                                <label>Gender: </label>
-                                <input type="radio" name="gender" value="Male" <?php echo ($row['gender'] == 'Male') ? 'checked' : ''; ?>>
-                                Male
-                                <input type="radio" name="gender" value="Female" <?php echo ($row['gender'] == 'Female') ? 'checked' : ''; ?>>
-                                Female
-                                <input type="radio" name="gender" value="Others" <?php echo ($row['gender'] == 'Others') ? 'checked' : ''; ?>>
-                                Others
-                            </div>
-                            <button type=" submit">Register</button>
-                            <br>
-                            <div class="btn">
-                                <a href="../admin/admin_dashboard.php">Back to dashboard</a>
-                            </div>
-                        </form>
+                    <div class="right">
+                        <div class="include">
+                            <?php include_once "../includes/header.php"; ?>
+                        </div>
+
+                        <div class="newAdmin">
+                            <h1>Update student records</h1>
+                            <form action="../process/student_update.php" method="post">
+                                <input type="hidden" name="id" value="<?php echo $row['sid']; ?>">
+                                <!-- If student data id edited via class page -->
+                                <input type="hidden" name="class_id" value="<?php if (isset($_REQUEST['class_id'])) {
+                                    echo $_REQUEST['class_id'];  } 
+                                    ?>">
+                               
+                                <div class="inputbox">
+                                    <label for="">Full Name:</label>
+                                    <input type="text" name="fullname" id="fullname" placeholder="Full Name"
+                                        value="<?php echo $row['name'] ?>" required>
+                                    <span></span>
+                                </div>
+                                <div class="inputbox">
+                                    <label for="">Roll no.:</label>
+                                    <input type="number" name="roll" id="roll" placeholder="Role number"
+                                        value="<?php echo $row['roll'] ?>" required min="1">
+                                    <span></span>
+                                </div>
+                                <div class="inputbox">
+                                    <label for="">Father's name:</label>
+                                    <input name="father" type="text" id="father" placeholder="Father's name"
+                                        value="<?php echo $row['father'] ?>" required>
+                                    <span></span>
+                                </div>
+                                <div class="inputbox">
+                                    <label for="">Mother's name:</label>
+                                    <input name="mother" type="text" id="mother" placeholder="Mother's name"
+                                        value="<?php echo $row['mother'] ?>" required>
+                                    <span></span>
+                                </div>
+                                <div class="inputbox">
+                                    <label for="">Class:</label>
+                                    <input name="class" type="number" id="class" placeholder="Class"
+                                        value="<?php echo $row['class'] ?>" required min="1" max="10">
+                                    <span></span>
+                                </div>
+                                <div class="inputbox">
+                                    <label for="">Address:</label>
+                                    <input name="address" type="text" id="address" placeholder="Address"
+                                        value="<?php echo $row['address'] ?>" required>
+                                    <span></span>
+                                </div>
+                                <div class="inputbox">
+                                    <label for="">Contact no.:</label>
+                                    <input name="contact" type="text" id="contact" placeholder="Contact number"
+                                        value="<?php echo $row['contact'] ?>" required>
+                                    <span></span>
+                                </div>
+                                <div class="inputbox">
+                                    <label for="">Date of birth:</label>
+                                    <input name="dob" type="date" id="dob" placeholder="Date of birth"
+                                        value="<?php echo $row['dob'] ?>" required>
+                                    <span></span>
+                                </div>
+                                <div class="inputbox">
+                                    <label for="">Gender:</label>
+                                    <select name="gender" id="gender" required>
+                                        <option value="" disabled selected>Select a gender</option>
+                                        <option value="Male" <?php echo (strtolower($row['gender']) == "male") ? 'selected' : ""; ?>>
+                                            Male
+                                        </option>
+                                        <option value="Female" <?php echo (strtolower($row['gender']) == "female") ? 'selected' : ""; ?>>
+                                            Female</option>
+                                        <option value="Others" <?php echo (strtolower($row['gender'])=="others")? 'selected':"";?>>Others</option>
+                                    </select>
+                                    <span></span>
+                                </div>
+                                <div class="inputbox">
+                                    <input type="submit" value="Update">
+                                </div>
+                            </form>
+                        </div>
+
                     </div>
                 </div>
             </body>

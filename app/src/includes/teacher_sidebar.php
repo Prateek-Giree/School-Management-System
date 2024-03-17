@@ -36,15 +36,15 @@ if (empty ($_SESSION['email']) || $_SESSION['role'] != 1) {
                             <i class="fas fa-home"></i>
                             <span class="nav-item">Dashboard</span>
                         </a></li>
-                    <li><a href="">
+                    <li><a href="../pages/teacher_profile.php">
                             <i class="fas fa-user"></i>
                             <span class="nav-item">Profile</span>
                         </a></li>
-                    <li><a href="">
+                    <li><a href="../process/class_show.php">
                             <i class="fas fa-users-rectangle"></i>
                             <span class="nav-item">View Classes</span>
                         </a></li>
-                    <li><a href="">
+                    <li><a href="../process/student_show.php">
                             <i class="fas fa-users"></i>
                             <span class="nav-item">View Students</span>
                         </a></li>

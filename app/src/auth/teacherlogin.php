@@ -5,33 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teacher Login</title>
-    <style>
-        .message {
-            text-align: center;
-            font-size: 18px;
-            font-family: monospace;
-        }
-
-        .back {
-            display: flex;
-            justify-content: center;
-        }
-
-        .button {
-            font-family: monospace;
-            background: #085662;
-            color: #fff;
-            border: none;
-            padding: 10px;
-            font-size: 15px;
-            border-radius: 5px;
-            text-decoration: none;
-        }
-
-        .button:hover {
-            background: #0b8fa3;
-        }
-    </style>
 </head>
 
 <body>
@@ -42,7 +15,7 @@
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
         // Retrieve email and password from the form
         $teacher_email = $_POST["email"];
-        $password = $_POST["pass"];
+        $password = trim(md5($_POST["pass"]));
 
 
         include_once "../includes/connection.php";
@@ -57,7 +30,8 @@
         if ($result->num_rows > 0) {
             // Teacher found, set session variable and redirect to teacher panel
             $_SESSION["email"] = $teacher_email;
-            header("location:../teacher/teacher_panel.php");
+            $_SESSION['role'] = 1;
+            header("location:../teacher/teacher_dashboard.php");
             exit(); // Exit to prevent further execution
         } else {
             // Teacher not found, display error message

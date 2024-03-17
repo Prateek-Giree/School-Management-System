@@ -1,5 +1,5 @@
 <?php
-if (empty($_SESSION['email'])) {
+if (empty($_SESSION['email'])|| $_SESSION['role'] != 0) {
     header("Location:../../public/index.php");
 } else {
     include "../includes/connection.php";

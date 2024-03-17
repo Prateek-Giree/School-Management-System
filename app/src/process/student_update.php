@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (empty($_SESSION['email'])) {
+if (empty($_SESSION['email'])|| $_SESSION['role'] != 0) {
     header('location:../../public/index.php');
     exit();
 } else {

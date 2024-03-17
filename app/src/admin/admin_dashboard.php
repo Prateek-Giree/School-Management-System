@@ -1,12 +1,12 @@
 <?php
 session_start();
 
-// Redirect to index page if session dont exists
-if (empty($_SESSION['email'])) {
+// Redirect to index page if session dont exists or if teacher is trying to access the page
+if (empty ($_SESSION['email']) || ($_SESSION['role'] != 0)) {
     header('location:../../public/index.php');
     exit();
 } else {
-    include('../includes/connection.php');
+    include ('../includes/connection.php');
     // Query to fetch total number of classes
     $sqlTotolClasses = "SELECT * FROM class";
     $queryTotalClasses = $conn->query($sqlTotolClasses);

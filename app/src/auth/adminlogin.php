@@ -30,6 +30,7 @@
         if ($result->num_rows > 0) {
             // set session variable and redirect to admin panel
             $_SESSION["email"] = $admin_email;
+            $_SESSION['role'] = 0;
             header("location:../admin/admin_dashboard.php");
             exit();
         } else {

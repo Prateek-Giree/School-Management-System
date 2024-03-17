@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (empty($_SESSION['email'])) {
+if (empty ($_SESSION['email'])) {
     header("Location:../../public/index.php");
     exit();
 } else {
@@ -14,7 +14,17 @@ if (empty($_SESSION['email'])) {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Admin panel | View teachers</title>
+        <?php
+        if ($_SESSION['role'] == 0) {
+            ?>
+            <title>Admin panel | View teachers</title>
+            <?php
+        } else {
+            ?>
+            <title>Teacher panel | View teachers</title>
+            <?php
+        }
+        ?>
         <link rel="stylesheet" href="../css/view_table.css">
     </head>
 
@@ -22,12 +32,22 @@ if (empty($_SESSION['email'])) {
         <div class="container">
             <div class="left">
                 <?php
-                include_once "../includes/admin_sidebar.php";
+                if ($_SESSION['role'] == 0) {
+                    include_once "../includes/admin_sidebar.php";
+                } else {
+                    include_once "../includes/teacher_sidebar.php";
+                }
                 ?>
             </div>
             <div class="right">
                 <div class="include">
-                    <?php include_once "../includes/header.php"; ?>
+                    <?php
+                    if ($_SESSION['role'] == 0) {
+                        include_once "../includes/header.php";
+                    } else {
+                        include_once "../includes/teacher_header.php";
+                    }
+                    ?>
                 </div>
                 <div class="content" style="display:block;">
                     <div>
@@ -43,7 +63,13 @@ if (empty($_SESSION['email'])) {
                                     <th>Address</th>
                                     <th>Contact</th>
                                     <th>Email</th>
-                                    <th>Action</th>
+                                    <?php
+                                    if ($_SESSION['role'] == 0) {
+                                        ?>
+                                        <th>Action</th>
+                                        <?php
+                                    }
+                                    ?>
                                 </tr>
                             </thead>
                             <tbody>
@@ -61,11 +87,14 @@ if (empty($_SESSION['email'])) {
                                                 <td>" . htmlspecialchars($name) . "</td>
                                                 <td>" . htmlspecialchars($address) . "</td>
                                                 <td>" . htmlspecialchars($contact) . "</td>
-                                                <td> <a href='mailto:'" . $email . "' style='text-decoration:none;'>" . htmlspecialchars($email) . "</td>
-                                                <td><a href='teacher_edit.php?id=" . $id . "'><i class='fa-solid fa-pen-to-square' style='color:#2f7999;'></i></a> ||
-                                                <a href='javascript:void(0)' onclick='checkStatus(" . $id . ")' ; '><i class='fa-solid fa-trash' style='color:#2f7999;'></i></a>
-                                                </td>
-                                            </tr>";
+                                                <td> <a href='mailto:'" . $email . "' style='text-decoration:none;'>" . htmlspecialchars($email) . "</td>";
+                                            if ($_SESSION['role'] == 0) {
+                                                echo "
+                                                    <td><a href='teacher_edit.php?id=" . $id . "'><i class='fa-solid fa-pen-to-square' style='color:#2f7999;'></i></a> ||
+                                                    <a href='javascript:void(0)' onclick='checkStatus(" . $id . ")' ; '><i class='fa-solid fa-trash' style='color:#2f7999;'></i></a>
+                                                    </td>
+                                                    </tr>";
+                                            }
                                         }
                                     } else {
                                         echo "<script>

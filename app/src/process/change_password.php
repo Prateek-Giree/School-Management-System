@@ -1,16 +1,15 @@
 <?php
 session_start();
-if (empty($_SESSION['email'])) {
+if (empty ($_SESSION['email'])) {
     header('location:../../public/index.php');
     exit();
 } else {
-    if (isset($_POST['oldpass'])) {
+    if (isset ($_POST['oldpass'])) {
         include "../includes/connection.php";
         $oldpass = md5(trim($_POST['oldpass']));
         $newpass = trim($_POST['newpass']);
         $cpass = trim($_POST['cpass']);
         $email = $_SESSION['email'];
-
         $sql = "SELECT * FROM user WHERE email=?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("s", $email);
@@ -42,18 +41,36 @@ if (empty($_SESSION['email'])) {
                         exit();
                     }
                 } else {
-                    echo "
-                    <script>
-                        alert('New password and confirm password does not match');
-                        window.location.href = '../pages/admin_profile.php#password';
-                    </script>";
+                    if ($_SESSION['role'] == 0) {
+                        echo "
+                        <script>
+                            alert('New password and confirm password does not match');
+                            window.location.href = '../pages/admin_profile.php#password';
+                        </script>";
+                    } else {
+                        echo "
+                        <script>
+                            alert('New password and confirm password does not match');
+                            window.location.href = '../pages/teacher_profile.php#password';
+                        </script>";
+                    }
+
                 }
             } else {
-                echo "
-                <script>
-                    alert('Old password does not match');
-                    window.location.href = '../pages/admin_profile.php#password';
-                </script>";
+                if ($_SESSION['role'] == 0) {
+                    echo "
+                        <script>
+                            alert('Old password does not match');
+                            window.location.href = '../pages/admin_profile.php#password';
+                        </script>";
+                } else {
+                    echo "
+                        <script>
+                            alert('Old password does not match');
+                            window.location.href = '../pages/teacher_profile.php#password';
+                        </script>";
+                }
+
             }
 
         } else {

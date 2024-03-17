@@ -1,16 +1,16 @@
 <?php
 session_start();
-if (empty($_SESSION['email'])) {
+if (empty ($_SESSION['email']) || $_SESSION['role'] != 0) {
     header("Location:../../public/index.php");
     exit();
 } else {
     include "../includes/connection.php";
-    if (isset($_REQUEST['id'])) {
+    if (isset ($_REQUEST['id'])) {
         $id = $_REQUEST['id'];
         $sql = "DELETE FROM user WHERE uid=$id";
 
         if ($conn->query($sql) === TRUE) {
-            if (isset($_REQUEST['role'])) {
+            if (isset ($_REQUEST['role'])) {
                 echo "
                 <script>
                     alert('Record deleted successfully');

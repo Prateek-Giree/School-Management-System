@@ -14,7 +14,17 @@ if (empty($_SESSION['email'])) {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Admin panel | View class</title>
+        <?php
+        if ($_SESSION['role'] == 0) {
+            ?>
+            <title>Admin panel | View class</title>
+            <?php
+        } else {
+            ?>
+            <title>Teacher panel | View class</title>
+            <?php
+        }
+        ?>
         <link rel="stylesheet" href="../css/view_table.css">
     </head>
 
@@ -22,12 +32,23 @@ if (empty($_SESSION['email'])) {
         <div class="container">
             <div class="left">
                 <?php
-                include_once "../includes/admin_sidebar.php";
+                if ($_SESSION['role'] == 0) {
+                    include_once "../includes/admin_sidebar.php";
+                } else {
+                    include_once "../includes/teacher_sidebar.php";
+                }
                 ?>
             </div>
             <div class="right">
                 <div class="include">
-                    <?php include_once "../includes/header.php"; ?>
+
+                    <?php
+                    if ($_SESSION['role'] == 0) {
+                        include_once "../includes/header.php";
+                    } else {
+                        include_once "../includes/teacher_header.php";
+                    }
+                    ?>
                 </div>
                 <div class="content">
 

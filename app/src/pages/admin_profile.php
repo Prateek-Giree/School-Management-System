@@ -2,7 +2,7 @@
 session_start();
 
 // Redirect to index page if session dont exists
-if (empty($_SESSION['email'])) {
+if (empty ($_SESSION['email']) || $_SESSION['role'] != 0) {
     header('location:../../public/index.php');
     exit();
 } else {
@@ -149,7 +149,7 @@ if (empty($_SESSION['email'])) {
                         </div>
                         <div class="inputbox">
                             <label for="">Role:</label>
-                            <input name="role" type="text" id="role" value="0" readonly>
+                            <input name="role" type="text" id="role" value="Admin" readonly>
                             <span></span>
                         </div>
                         <div class="inputbox">
@@ -206,9 +206,6 @@ if (empty($_SESSION['email'])) {
             </div>
         </div>
         <script>
-            // Set the value of the input field to "Admin" for display
-            document.getElementById("role").value = "Admin";
-
             function checkStatus(id, role) {
                 var status = confirm("Are you sure you want to delete?");
                 if (status) {

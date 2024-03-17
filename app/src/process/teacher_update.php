@@ -1,11 +1,11 @@
 <?php
 session_start();
-if (empty($_SESSION['email'])) {
+if (empty ($_SESSION['email'])) {
     header('location:../../public/index.php');
     exit();
 } else {
     //check if form has been submitted
-    if (isset($_POST['fullname'])) {
+    if (isset ($_POST['fullname'])) {
         include_once "../includes/connection.php";
         $stmt = null;
         $errors = array();
@@ -30,10 +30,15 @@ if (empty($_SESSION['email'])) {
             }
         }
 
-        if (!empty($errors)) {
+        if (!empty ($errors)) {
             foreach ($errors as $error) {
                 // echo "<p>{$error}<p>";
-                if (isset($_REQUEST['urladmin'])) {
+                // for teacher 
+                if ($_SESSION['role'] == 1) {
+                    echo "<script>alert('{$error}');
+                        window.location.href = '../pages/teacher_profile.php';
+                        </script>";
+                } elseif (isset ($_REQUEST['urladmin'])) {
                     echo "<script>alert('{$error}');
                         window.location.href = '../pages/admin_profile.php';
                         </script>";
@@ -56,38 +61,59 @@ if (empty($_SESSION['email'])) {
                 $stmt = $conn->prepare($sql);
                 $stmt->bind_param("ssssi", $name, $email, $address, $contact, $id);
                 if ($stmt->execute()) {
-                    //For admin
-                    if (isset($_POST['urladmin'])) {
+                    //For currently logged in user(admin or teacher)
+                    if (isset ($_POST['urladmin']) || $_SESSION['role'] == 1) {
                         //changing session email to new email
                         $_SESSION['email'] = $email;
-                        echo " <script>
-                alert('Details updated successfully');
-                window.location.href='../pages/admin_profile.php'; 
-                </script>";
+                        if ($_SESSION['role'] == 1) {
+                            echo "<script>
+                                alert('Details updated successfully');
+                                window.location.href='../pages/teacher_profile.php';
+                                </script>";
+                        } else {
+                            echo " <script>
+                            alert('Details updated successfully');
+                            window.location.href='../pages/admin_profile.php'; 
+                            </script>";
+                        }
                     } else {
-                        //For teacher
+                        //For rest of the users
                         echo " <script>
-                alert('Details updated successfully'); 
-                window.location.href='../process/teacher_show.php'; 
-                </script>";
+                                alert('Details updated successfully'); 
+                                window.location.href='../process/teacher_show.php'; 
+                                </script>";
                     }
                 } else {
-                    echo " <script>
+                    if ($_SESSION['role'] == 1) {
+                        echo " <script>
+                            alert('Something went wrong'); 
+                            window.location.href='../teacher/teacher_dashboard.php'; 
+                        </script>";
+                    } else {
+                        echo " <script>
                             alert('Something went wrong'); 
                             window.location.href='../admin/admin_dashboard.php'; 
                         </script>";
+                    }
+
 
                 }
             } catch (Exception $e) {
                 //For admin registration via admin setting page
-                if (isset($_REQUEST['urladmin'])) {
-                    echo "<script>alert('Admin with this contact info already exists');
-                                window.location.href = '../pages/admin_profile.php#admin';
+                if (isset ($_REQUEST['urladmin'])) {
+                    echo "<script>alert('User with this contact info already exists');
+                                window.location.href = '../pages/admin_profile.php';
                         </script>";
                 } else {
-                    echo "<script>alert('Teacher with this contact info already exists');
-                            window.location.href = '../pages/teacher_add.php';
+                    if ($_SESSION['role'] == 1) {
+                        echo "<script>alert('User with this contact info already exists');
+                            window.location.href = '../pages/teacher_profile.php';
                         </script>";
+                    } else {
+                        echo "<script>alert('Teacher with this contact info already exists');
+                        window.location.href = '../process/teacher_edit.php?id=$id';
+                    </script>";
+                    }
                 }
             } finally {
                 if ($stmt != null) {

@@ -2,12 +2,12 @@
 session_start();
 
 // Redirect to index page if session dont exists
-if (empty($_SESSION['email'])) {
+if (empty ($_SESSION['email']) || $_SESSION['role'] != 0   ) {
     header('location:../../public/index.php');
     exit();
 } else {
     include "../includes/connection.php";
-    if (isset($_REQUEST['id'])) {
+    if (isset ($_REQUEST['id'])) {
         $id = $_REQUEST['id'];
         $sql = "select * from user where uid=$id ";
         $result = $conn->query($sql);

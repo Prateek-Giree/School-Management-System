@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (empty($_SESSION['email'])) {
+if (empty ($_SESSION['email'])) {
     header("Location:../../public/index.php");
     exit();
 } else {
@@ -14,7 +14,17 @@ if (empty($_SESSION['email'])) {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Admin panel | View students</title>
+        <?php
+        if ($_SESSION['role'] == 0) {
+            ?>
+            <title>Admin panel | View students</title>
+            <?php
+        } else {
+            ?>
+            <title>Teacher panel | View students</title>
+            <?php
+        }
+        ?>
         <link rel="stylesheet" href="../css/view_table.css">
     </head>
 
@@ -22,12 +32,22 @@ if (empty($_SESSION['email'])) {
         <div class="container">
             <div class="left">
                 <?php
-                include_once "../includes/admin_sidebar.php";
+                if ($_SESSION['role'] == 0) {
+                    include_once "../includes/admin_sidebar.php";
+                } else {
+                    include_once "../includes/teacher_sidebar.php";
+                }
                 ?>
             </div>
             <div class="right">
                 <div class="include">
-                    <?php include_once "../includes/header.php"; ?>
+                    <?php
+                    if ($_SESSION['role'] == 0) {
+                        include_once "../includes/header.php";
+                    } else {
+                        include_once "../includes/teacher_header.php";
+                    }
+                    ?>
                 </div>
                 <div class="content">
                     <div>
@@ -48,7 +68,13 @@ if (empty($_SESSION['email'])) {
                                     <th>Roll no.</th>
                                     <th>Gender</th>
                                     <th>Date of birth</th>
-                                    <th>Action</th>
+                                    <?php
+                                    if ($_SESSION['role'] == 0) {
+                                        ?>
+                                        <th>Action</th>
+                                        <?php
+                                    }
+                                    ?>
                                 </tr>
                             </thead>
                             <tbody>
@@ -66,11 +92,13 @@ if (empty($_SESSION['email'])) {
                                             <td>" . $data['class'] . "</td>
                                             <td>" . $data['roll'] . "</td>
                                             <td>" . $data['gender'] . "</td>
-                                            <td>" . $data['dob'] . "</td>                                                
-                                            <td><a href='student_edit.php?id=" . $data['sid'] . "'><i class='fa-solid fa-pen-to-square'  style='color:#2f7999;'></i></a>|
+                                            <td>" . $data['dob'] . "</td>";
+                                            if ($_SESSION['role'] == 0) {
+                                                echo " <td><a href='student_edit.php?id=" . $data['sid'] . "'><i class='fa-solid fa-pen-to-square'  style='color:#2f7999;'></i></a>|
                                                 <a href='javascript:void(0)' class='delete-link' onclick='checkStatus(" . $data['sid'] . ")' ; '><i class='fa-solid fa-trash'  style='color:#2f7999;'></i></a>
                                                 </td>
-                                            </tr>";
+                                                </tr>";
+                                            }
                                         }
                                     } else {
                                         echo "<script>

@@ -44,11 +44,11 @@ if (empty($_SESSION['email'])) {
                     $errors[$field] = "{$_POST[$field]} is invalid email format";
                 } elseif ($field == "contact" && !preg_match("/^(98|97)\d{8}$/", $_POST[$field])) {
                     $errors[$field] = "{$_POST[$field]} is invalid contact number";
-                } elseif ($field == "role" && ($_POST[$field] != 0 || $_POST[$field] != 1)) {
-                    $errors[$field] = "{$label} is invalid ";
+                } elseif ($field == "role" && !preg_match('/^(admin|teacher)$/', strtolower($_POST[$field]))) {
+                    $errors[$field] = "{$label} is invalid";
                 } elseif ($field == "password") {
                     if (strlen($_POST[$field]) < 8) {
-                        $errors[$field] = "{$label} should be at least 8 characters long";
+                        $errors[$field] = "{$label} should  be at least 8 characters long";
                     }
                     if (strtolower($_POST[$field]) === strtolower("Password")) {
                         $errors[$field] = "{$label} cannot not be password";
@@ -67,9 +67,10 @@ if (empty($_SESSION['email'])) {
                             window.location.href = '../pages/admin_profile.php#admin';
                             </script>";
                     } else {
-                        echo "<script>alert('{$error}');
-                                    window.location.href = '../pages/teacher_add.php';
-                            </script>";
+                        // echo "<script>alert('{$error}');
+                        //             window.location.href = '../pages/teacher_add.php';
+                        //     </script>";
+                        echo $_POST['role'];
                     }
 
                 }
@@ -78,9 +79,13 @@ if (empty($_SESSION['email'])) {
                 $email = $_POST['email'];
                 $address = $_POST['address'];
                 $contact = $_POST['contact'];
-                $role = intval($_POST['role']);
                 $password = md5(trim($_POST['password']));
                 $cpassword = md5(trim($_POST['cpass']));
+                if (strtolower($_POST['role']) == "admin") {
+                    $role = 0;
+                } else {
+                    $role = 1;
+                }
 
                 if ($password != $cpassword) {
                     //For admin registration via admin setting page

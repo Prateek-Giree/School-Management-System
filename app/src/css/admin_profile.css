@@ -11,12 +11,12 @@
   border-radius: 4px;
 }
 
-.info { 
+.info {
   background-color: white;
   display: flex;
   flex-direction: column;
   margin: 25px;
-  padding-top:1rem ;
+  padding-top: 1rem;
   min-height: 90vh;
   box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.1);
 }
@@ -69,7 +69,8 @@
 .inputbox {
   margin: 0.5rem 0 0 2rem;
 }
-.inputbox input {
+.inputbox input,
+select {
   width: 100%;
   padding: 0.5rem;
   font-size: 18px;
@@ -102,7 +103,7 @@ input[type="submit"]:hover {
   background-color: white;
   display: flex;
   flex-direction: column;
-  /* margin: 25px; */
+  margin: 25px;
   padding: 0 2rem 1rem 0;
   box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.1);
 }

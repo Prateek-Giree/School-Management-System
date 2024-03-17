@@ -2,7 +2,7 @@
 <?php
 session_start();
 //check if the user is logged in or not
-if (empty($_SESSION['email'])) {
+if (empty ($_SESSION['email']) || $_SESSION['role'] != 0) {
     header('location:../../public/index.php');
     exit();
 } else {
@@ -18,7 +18,7 @@ if (empty($_SESSION['email'])) {
     <body>
         <?php
         //check if form has been submitted
-        if (isset($_POST['fullname'])) {
+        if (isset ($_POST['fullname'])) {
             include_once "../includes/connection.php";
 
             $errors = array();
@@ -63,7 +63,7 @@ if (empty($_SESSION['email'])) {
                     $errors[$field] = "Invalid {$label}";
                 }
             }
-            if (!empty($errors)) {
+            if (!empty ($errors)) {
                 foreach ($errors as $error) {
                     echo "<script>alert('{$error}');
                     window.location.href = '../pages/student_add.php';
@@ -104,7 +104,7 @@ if (empty($_SESSION['email'])) {
                                 // window.location.href = "../pages/student_add.php";
                                 // </script>';
                                 preg_match("/Duplicate entry '(.+)' for key '(.+)'/", $e->getMessage(), $matches);
-                                if (isset($matches[1]) && preg_match("/($class+)-($roll)/", $matches[1])) {
+                                if (isset ($matches[1]) && preg_match("/($class+)-($roll)/", $matches[1])) {
                                     $violatingData = "Class: $class, Roll: $roll";
                                 } else {
                                     $violatingData = $matches[1];

@@ -29,16 +29,25 @@ body {
 }
 
 .loginForm .inputBox {
+  display: flex;
+  flex-direction: row-reverse;
   position: relative;
-  /* width: 100%; */
   margin-top: 20px;
 }
+.loginForm .inputBox i {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
 .loginForm .inputBox input {
+  /* font-family: 'Courier New', Courier, monospace; */
   width: 100%;
   font-family: "Rajdhani", sans-serif;
   background-color: transparent;
-  padding: 5px 0;
-  font-size: 16px;
+  padding: 5px 0; 
+  font-size: 17px;
+  font-weight: bold;
   margin: 10px 0;
   border: none;
   border-bottom: 2px solid #333;

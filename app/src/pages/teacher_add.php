@@ -2,7 +2,7 @@
 session_start();
 
 // Redirect to index page if session dont exists
-if (empty($_SESSION['email'])|| $_SESSION['role'] != 0) {
+if (empty ($_SESSION['email']) || $_SESSION['role'] != 0) {
     header('location:../../public/index.php');
     exit();
 } else {
@@ -63,13 +63,19 @@ if (empty($_SESSION['email'])|| $_SESSION['role'] != 0) {
                             <span></span>
                         </div>
                         <div class="inputbox">
-                            <label for="">Password:</label>
-                            <input name="password" type="password" id="password" placeholder="Password" required>
+                            <div class="password-input">
+                                <label for="">Password:</label>
+                                <input name="password" type="password" id="pass" placeholder="Password" required>
+                                <i class="fa-solid fa-eye" id="togglePassword"></i>
+                            </div>
                             <span></span>
                         </div>
                         <div class="inputbox">
-                            <label for="">Confirm Password:</label>
-                            <input name="cpass" type="password" id="cpassword" placeholder="Confirm Password" required>
+                            <div class="password-input">
+                                <label for="">Confirm Password:</label>
+                                <input name="cpass" type="password" id="cpass" placeholder="Confirm Password" required>
+                                <i class="fa-solid fa-eye" id="ctogglePassword"></i>
+                            </div>
                             <span></span>
                         </div>
                         <div class="inputbox">
@@ -80,6 +86,7 @@ if (empty($_SESSION['email'])|| $_SESSION['role'] != 0) {
 
             </div>
         </div>
+        <script src="../js/script.js"></script>
     </body>
 
     </html>

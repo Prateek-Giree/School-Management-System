@@ -69,6 +69,22 @@
 .inputbox {
   margin: 0.5rem 0 0 2rem;
 }
+.password-input {
+  position: relative;
+}
+
+.password-input input {
+  padding-right: 30px; /* Adjust this value according to your icon size */
+}
+
+.password-input .fa-eye {
+  position: absolute;
+  top: 70%;
+  right: 10px; /* Adjust this value according to your preference */
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
 .inputbox input,
 select {
   width: 100%;

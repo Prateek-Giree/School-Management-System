@@ -31,6 +31,7 @@ if (empty ($_SESSION['email']) || $_SESSION['role'] != 0) {
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
             integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
             crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src="../js/script.js"></script>
         <link rel="stylesheet" href="../css/admin_pages.css">
         <link rel="stylesheet" href="../css/admin_profile.css">
         <link rel="stylesheet" href="../css/view_table.css">
@@ -104,18 +105,27 @@ if (empty ($_SESSION['email']) || $_SESSION['role'] != 0) {
                     <h1>Change Password</h1>
                     <form action="../process/change_password.php" method="post">
                         <div class="inputbox">
-                            <label for="">Old Password:</label>
-                            <input type="text" name="oldpass" id="oldpass">
+                            <div class="password-input">
+                                <label for="">Old Password:</label>
+                                <input type="password" name="oldpass" id="oldpass">
+                                <i class="fa-solid fa-eye" id="toggleOldPass"></i>
+                            </div>
                             <span></span>
                         </div>
                         <div class="inputbox">
-                            <label for="">New Password:</label>
-                            <input type="text" name="newpass" id="newpass">
+                            <div class="password-input">
+                                <label for="">New Password:</label>
+                                <input type="password" name="newpass" id="newpass">
+                                <i class="fa-solid fa-eye" id="toggleNewPass"></i>
+                            </div>
                             <span></span>
                         </div>
                         <div class="inputbox">
-                            <label for="">Confirm Password:</label>
-                            <input type="text" name="cpass" id="cpass">
+                            <div class="password-input">
+                                <label for="">Confirm Password:</label>
+                                <input type="password" name="cpass" id="cnewpass">
+                                <i class="fa-solid fa-eye" id="toggleCNewPass"></i>
+                            </div>
                             <span></span>
                         </div>
                         <div class="inputbox">
@@ -153,13 +163,19 @@ if (empty ($_SESSION['email']) || $_SESSION['role'] != 0) {
                             <span></span>
                         </div>
                         <div class="inputbox">
-                            <label for="">Password:</label>
-                            <input name="password" type="password" id="password" placeholder="Password" required>
+                            <div class="password-input">
+                                <label for="">Password:</label>
+                                <input name="password" type="password" id="pass" placeholder="Password" required>
+                                <i class="fa-solid fa-eye" id="togglePassword"></i>
+                            </div>
                             <span></span>
                         </div>
                         <div class="inputbox">
-                            <label for="">Confirm Password:</label>
-                            <input name="cpass" type="password" id="cpassword" placeholder="Confirm Password" required>
+                            <div class="password-input">
+                                <label for="">Confirm Password:</label>
+                                <input name="cpass" type="password" id="cpass" placeholder="Confirm Password" required>
+                                <i class="fa-solid fa-eye" id="ctogglePassword"></i>
+                            </div>
                             <span></span>
                         </div>
                         <div class="inputbox">

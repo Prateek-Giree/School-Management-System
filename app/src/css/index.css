@@ -135,6 +135,13 @@ header {
   font-weight: bold;
   pointer-events: none;
 }
+.loginForm .inputBox i {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
 
 .loginForm .inputBox input:focus ~ span,
 .loginForm .inputBox input:valid ~ span {

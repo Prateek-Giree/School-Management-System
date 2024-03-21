@@ -77,22 +77,22 @@ if (empty ($_SESSION['email']) || $_SESSION['role'] != 0) {
                                 <div class="inputbox">
                                     <label for="">Full Name:</label>
                                     <input name="fullname" type="text" value="<?php echo $data['name']; ?>">
-                                    <span id="nameErr"></span>
+                                    <span id="nameMsg"></span>
                                 </div>
                                 <div class="inputbox">
                                     <label for="">Email:</label>
                                     <input name="email" type="text" value="<?php echo $data['email']; ?>">
-                                    <span id="emailErr"></span>
+                                    <span id="emailMsg"></span>
                                 </div>
                                 <div class="inputbox">
                                     <label for="">Address:</label>
                                     <input name="address" type="text" value="<?php echo $data['address']; ?>">
-                                    <span id="addressErr"></span>
+                                    <span id="addressMsg"></span>
                                 </div>
                                 <div class="inputbox">
                                     <label for="">Contact no.:</label>
                                     <input name="contact" type="text" value="<?php echo $data['contact']; ?>">
-                                    <span id="contactErr"></span>
+                                    <span id="contactMsg"></span>
                                 </div>
                                 <div class="inputbox">
                                     <input type="submit" value="Update">
@@ -103,11 +103,12 @@ if (empty ($_SESSION['email']) || $_SESSION['role'] != 0) {
                 </div>
                 <div class="password" id="password">
                     <h1>Change Password</h1>
-                    <form action="../process/change_password.php" method="post">
+                    <form action="../process/change_password.php" method="post"
+                        onsubmit="return passwordValidation() && checkPass()">
                         <div class="inputbox">
                             <div class="password-input">
                                 <label for="">Old Password:</label>
-                                <input type="password" name="oldpass" id="oldpass">
+                                <input type="password" name="oldpass" id="oldpass" required>
                                 <i class="fa-solid fa-eye" id="toggleOldPass"></i>
                             </div>
                             <span></span>
@@ -115,18 +116,18 @@ if (empty ($_SESSION['email']) || $_SESSION['role'] != 0) {
                         <div class="inputbox">
                             <div class="password-input">
                                 <label for="">New Password:</label>
-                                <input type="password" name="newpass" id="newpass">
+                                <input type="password" name="newpass" id="newpass" onblur="passwordValidation()" required>
                                 <i class="fa-solid fa-eye" id="toggleNewPass"></i>
                             </div>
-                            <span></span>
+                            <span id="newPassErr"></span>
                         </div>
                         <div class="inputbox">
                             <div class="password-input">
                                 <label for="">Confirm Password:</label>
-                                <input type="password" name="cpass" id="cnewpass">
+                                <input type="password" name="cpass" id="cnewpass" onblur="checkPass()" required>
                                 <i class="fa-solid fa-eye" id="toggleCNewPass"></i>
                             </div>
-                            <span></span>
+                            <span id="cnewPassErr"></span>
                         </div>
                         <div class="inputbox">
                             <input type="submit" value="Change">
@@ -135,27 +136,31 @@ if (empty ($_SESSION['email']) || $_SESSION['role'] != 0) {
                 </div>
                 <div class="newAdmin">
                     <h1 id="admin">Add New Admin</h1>
-                    <form action="../process/teacher_add.php" method="post">
+                    <form action="../process/teacher_add.php" method="post" onsubmit="return validateForm()">
                         <input type="hidden" name="urladmin" value="-1">
                         <div class="inputbox">
                             <label for="">Full Name:</label>
-                            <input type="text" name="fullname" id="fullname" placeholder="Full Name" required>
-                            <span></span>
+                            <input type="text" name="fullname" id="fullname" placeholder="Full Name"
+                                onblur="nameValidation()" required>
+                            <span id="nameErr"></span>
                         </div>
                         <div class="inputbox">
                             <label for="">Email:</label>
-                            <input name="email" type="text" id="email" placeholder="Email" required>
-                            <span></span>
+                            <input name="email" type="text" id="email" placeholder="Email" onblur="emailValidation()"
+                                required>
+                            <span id="emailErr"></span>
                         </div>
                         <div class="inputbox">
                             <label for="">Address:</label>
-                            <input name="address" type="text" id="address" placeholder="Address" required>
-                            <span></span>
+                            <input name="address" type="text" id="address" placeholder="Address"
+                                onblur="addressValidation()" required>
+                            <span id="addressErr"></span>
                         </div>
                         <div class="inputbox">
                             <label for="">Contact:</label>
-                            <input name="contact" type="text" id="contact" placeholder="Contact" required>
-                            <span></span>
+                            <input name="contact" type="text" id="contact" placeholder="Contact"
+                                onblur="contactValidation()" required>
+                            <span id="contactErr"></span>
                         </div>
                         <div class="inputbox">
                             <label for="">Role:</label>
@@ -165,18 +170,20 @@ if (empty ($_SESSION['email']) || $_SESSION['role'] != 0) {
                         <div class="inputbox">
                             <div class="password-input">
                                 <label for="">Password:</label>
-                                <input name="password" type="password" id="pass" placeholder="Password" required>
+                                <input name="password" type="password" id="pass" placeholder="Password"
+                                    onblur="passwordValidation()" required>
                                 <i class="fa-solid fa-eye" id="togglePassword"></i>
                             </div>
-                            <span></span>
+                            <span id="passwordErr"></span>
                         </div>
                         <div class="inputbox">
                             <div class="password-input">
                                 <label for="">Confirm Password:</label>
-                                <input name="cpass" type="password" id="cpass" placeholder="Confirm Password" required>
+                                <input name="cpass" type="password" id="cpass" placeholder="Confirm Password"
+                                    onblur="checkPass()" required>
                                 <i class="fa-solid fa-eye" id="ctogglePassword"></i>
                             </div>
-                            <span></span>
+                            <span id="cpassErr"></span>
                         </div>
                         <div class="inputbox">
                             <input type="submit" value="Add">
@@ -221,6 +228,7 @@ if (empty ($_SESSION['email']) || $_SESSION['role'] != 0) {
                 </div>
             </div>
         </div>
+        <script src="../js/validation.js"></script>
         <script>
             function checkStatus(id, role) {
                 var status = confirm("Are you sure you want to delete?");

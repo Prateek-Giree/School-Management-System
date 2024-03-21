@@ -67,10 +67,10 @@ if (empty($_SESSION['email'])) {
                             window.location.href = '../pages/admin_profile.php#admin';
                             </script>";
                     } else {
-                        // echo "<script>alert('{$error}');
-                        //             window.location.href = '../pages/teacher_add.php';
-                        //     </script>";
-                        echo $_POST['role'];
+                        echo "<script>alert('{$error}');
+                                    window.location.href = '../pages/teacher_add.php';
+                            </script>";
+                        // echo $_POST['role'];
                     }
 
                 }

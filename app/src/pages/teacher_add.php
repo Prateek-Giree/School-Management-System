@@ -35,27 +35,31 @@ if (empty ($_SESSION['email']) || $_SESSION['role'] != 0) {
 
                 <div class="newAdmin">
                     <h1 id="admin">Register new teacher</h1>
-                    <form action="../process/teacher_add.php" method="post">
+                    <form action="../process/teacher_add.php" method="post" onsubmit="return validateForm()">
                         <input type="hidden" name="urladmin" value="-1">
                         <div class="inputbox">
                             <label for="">Full Name:</label>
-                            <input type="text" name="fullname" id="fullname" placeholder="Full Name" required>
-                            <span></span>
+                            <input type="text" name="fullname" id="fullname" placeholder="Full Name"
+                                onblur="nameValidation()" required>
+                            <span id="nameErr"></span>
                         </div>
                         <div class="inputbox">
                             <label for="">Email:</label>
-                            <input name="email" type="text" id="email" placeholder="Email" required>
-                            <span></span>
+                            <input name="email" type="text" id="email" placeholder="Email" onblur="emailValidation()"
+                                required>
+                            <span id="emailErr"></span>
                         </div>
                         <div class="inputbox">
                             <label for="">Address:</label>
-                            <input name="address" type="text" id="address" placeholder="Address" required>
-                            <span></span>
+                            <input name="address" type="text" id="address" placeholder="Address"
+                                onblur="addressValidation()" required>
+                            <span id="addressErr"></span>
                         </div>
                         <div class="inputbox">
                             <label for="">Contact:</label>
-                            <input name="contact" type="text" id="contact" placeholder="Contact" required>
-                            <span></span>
+                            <input name="contact" type="text" id="contact" placeholder="Contact"
+                                onblur="contactValidation()" required>
+                            <span id="contactErr"></span>
                         </div>
                         <div class="inputbox">
                             <label for="">Role:</label>
@@ -65,18 +69,20 @@ if (empty ($_SESSION['email']) || $_SESSION['role'] != 0) {
                         <div class="inputbox">
                             <div class="password-input">
                                 <label for="">Password:</label>
-                                <input name="password" type="password" id="pass" placeholder="Password" required>
+                                <input name="password" type="password" id="pass" placeholder="Password"
+                                    onblur="passwordValidation()" required>
                                 <i class="fa-solid fa-eye" id="togglePassword"></i>
                             </div>
-                            <span></span>
+                            <span id="passwordErr"></span>
                         </div>
                         <div class="inputbox">
                             <div class="password-input">
                                 <label for="">Confirm Password:</label>
-                                <input name="cpass" type="password" id="cpass" placeholder="Confirm Password" required>
+                                <input name="cpass" type="password" id="cpass" placeholder="Confirm Password"
+                                    onb="checkPass()" required>
                                 <i class="fa-solid fa-eye" id="ctogglePassword"></i>
                             </div>
-                            <span></span>
+                            <span id="cpassErr"></span>
                         </div>
                         <div class="inputbox">
                             <input type="submit" value="Register">
@@ -87,6 +93,7 @@ if (empty ($_SESSION['email']) || $_SESSION['role'] != 0) {
             </div>
         </div>
         <script src="../js/script.js"></script>
+        <script src="../js/validation.js"></script>
     </body>
 
     </html>

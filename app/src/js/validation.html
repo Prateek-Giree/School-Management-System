@@ -1,70 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Validation Testing</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <script>
-        function validateEmail(email) {
-            // Regular expression for email validation
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return emailRegex.test(email);
-        }
-        // Test cases for email validation
-        const emails = [
-            "example@example.com",
-            "john.doe@example.com",
-            "invalid_email.com",
-            "another@example",
-            "user@domain"
-        ];
-        console.log("Email validation test cases:");
-        emails.forEach(email => {
-            console.log(email, ":", validateEmail(email));
-        });
+      function validateEmail(email) {
+        // Regular expression for email validation
+        const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        return emailRegex.test(email);
+      }
+      // Test cases for email validation
+      const emails = [
+        "example@example.com",
+        "prateek@example.com.np",
+        "invalid_email.com",
+        "another@example",
+        "user@domain",
+      ];
+      console.log("Email validation test cases:");
+      emails.forEach((email) => {
+        console.log(email, ":", validateEmail(email));
+      });
 
+      function validateContactNo(contactNo) {
+        // Regular expression for contact number validation
+        const contactNoRegex = /^(98|97)\d{8}$/;
+        return contactNoRegex.test(contactNo);
+      }
 
-        function validateContactNo(contactNo) {
-            // Regular expression for contact number validation
-            const contactNoRegex = /^\d{10}$/;
-            return contactNoRegex.test(contactNo);
-        }
+      // Test cases for contact number validation
+      const contactNos = [
+        "1234567890",
+        "9876543210",
+        "12345",
+        "abcdefghij",
+        "9876543210",
+      ];
+      console.log("\nContact number validation test cases:");
+      contactNos.forEach((contactNo) => {
+        console.log(contactNo, ":", validateContactNo(contactNo));
+      });
 
-        // Test cases for contact number validation
-        const contactNos = [
-            "1234567890",
-            "9876543210",
-            "12345",
-            "abcdefghij",
-            "9876543210"
-        ];
-        console.log("\nContact number validation test cases:");
-        contactNos.forEach(contactNo => {
-            console.log(contactNo, ":", validateContactNo(contactNo));
-        });
+      function validateName(name) {
+        // Regular expression for name validation
+        const nameRegex = /^[a-zA-Z\s]+$/;
+        return nameRegex.test(name);
+      }
+      // Test cases for name validation
+      const names = ["John Doe", "Alice Smith", "12345", "John123", "Alice!"];
+      console.log("\nName validation test cases:");
+      names.forEach((name) => {
+        console.log(name, ":", validateName(name));
+      });
 
-        function validateName(name) {
-            // Regular expression for name validation
-            const nameRegex = /^[a-zA-Z\s]+$/;
-            return nameRegex.test(name);
-        }
-        // Test cases for name validation
-        const names = [
-            "John Doe",
-            "Alice Smith",
-            "12345",
-            "John123",
-            "Alice!"
-        ];
-        console.log("\nName validation test cases:");
-        names.forEach(name => {
-            console.log(name, ":", validateName(name));
-        });
+      function validateAddress(address) {
+        // Regular expression for address validation
+        const addressRegex = /^(?=.*[a-zA-Z])[a-zA-Z0-9\s,'-]{4,}$/;
+        return addressRegex.test(address);
+      }
+      const addresses = [
+        "@Prasa 9, Parsa",
+        "Apt 456, 789 Elm St",
+        "Invalid!@# Address",
+        "Khairahani-09-parsa",
+        "Parsa-9",
+        "0000000",
+        "k",
+      ];
+      console.log("\nAddress validation test cases:");
+      addresses.forEach((address) => {
+        console.log(address, ":", validateAddress(address));
+      });
+
+      function validatePassword(password) {
+        const passwordRegex = /^(?=.*[A-Za-z])(?=.*[^A-Za-z0-9]).{8,25}$/;
+        return passwordRegex.test(password);
+      }
+
+      // Test cases for password validation
+      const passwords = [
+        "Password1!",
+        "Weak123",
+        "StrongPassword",
+        "12345678",
+        "Abcdefghijklmnopqrstuvwxyz",
+        "!@#$%^&*()_+Password123",
+        "p@sswrd",
+      ];
+
+      console.log("\nPassword validation test cases:");
+      passwords.forEach((password) => {
+        console.log(password, ":", validatePassword(password));
+      });
     </script>
-</body>
-
+  </body>
 </html>

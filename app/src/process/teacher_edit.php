@@ -62,8 +62,9 @@ if (empty ($_SESSION['email']) || $_SESSION['role'] != 0) {
                                 </div>
                                 <div class="inputbox">
                                     <label for="">Contact:</label>
-                                    <input name="contact" type="text" id="updateContact" onblur="contactUpdateValidation()"
-                                        value="<?php echo $row['contact']; ?>" placeholder="Contact" required>
+                                    <input name="contact" type="text" id="updateContact" oninput="limitContactLength(this)"
+                                        onblur="contactUpdateValidation()" value="<?php echo $row['contact']; ?>"
+                                        placeholder="Contact" required>
                                     <span id="contactUpdateErr"></span>
                                 </div>
                                 <div class="inputbox">

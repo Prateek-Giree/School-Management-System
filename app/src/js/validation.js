@@ -1,3 +1,10 @@
+// Limit contact number length to 10
+function limitContactLength(input) {
+    if (input.value.length > 10) {
+        input.value = input.value.slice(0, 10);
+    }
+}
+
 //----------------------------------------------------------------------------------------------
 //Validating teacher and admin records before insertion
 //----------------------------------------------------------------------------------------------

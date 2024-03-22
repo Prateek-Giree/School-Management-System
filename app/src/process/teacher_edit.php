@@ -2,7 +2,7 @@
 session_start();
 
 // Redirect to index page if session dont exists
-if (empty ($_SESSION['email']) || $_SESSION['role'] != 0   ) {
+if (empty ($_SESSION['email']) || $_SESSION['role'] != 0) {
     header('location:../../public/index.php');
     exit();
 } else {
@@ -40,31 +40,31 @@ if (empty ($_SESSION['email']) || $_SESSION['role'] != 0   ) {
 
                         <div class="newAdmin">
                             <h1 id="admin">Update teacher details</h1>
-                            <form action="../process/teacher_update.php" method="post">
+                            <form action="../process/teacher_update.php" method="post" onsubmit="return updateValidation()">
                                 <input type="hidden" name="id" value="<?php echo $row['uid']; ?>">
                                 <div class="inputbox">
                                     <label for="">Full Name:</label>
-                                    <input type="text" name="fullname" id="fullname" value="<?php echo $row['name']; ?>"
-                                        placeholder="Full Name" required>
-                                    <span></span>
+                                    <input type="text" name="fullname" id="updateName" onblur="nameUpdateValidation()"
+                                        value="<?php echo $row['name']; ?>" placeholder="Full Name" required>
+                                    <span id="nameUpdateErr"></span>
                                 </div>
                                 <div class="inputbox">
                                     <label for="">Email:</label>
-                                    <input name="email" type="text" id="email" value="<?php echo $row['email']; ?>"
-                                        placeholder="Email" required>
-                                    <span></span>
+                                    <input name="email" type="text" id="updateEmail" onblur="emailUpdateValidation()"
+                                        value="<?php echo $row['email']; ?>" placeholder="Email" required>
+                                    <span id="emailUpdateErr"></span>
                                 </div>
                                 <div class="inputbox">
                                     <label for="">Address:</label>
-                                    <input name="address" type="text" id="address" value="<?php echo $row['address']; ?>"
-                                        placeholder="Address" required>
-                                    <span></span>
+                                    <input name="address" type="text" id="updateAddress" onblur="addressUpdateValidation()"
+                                        value="<?php echo $row['address']; ?>" placeholder="Address" required>
+                                    <span id="addressUpdateErr"></span>
                                 </div>
                                 <div class="inputbox">
                                     <label for="">Contact:</label>
-                                    <input name="contact" type="text" id="contact" value="<?php echo $row['contact']; ?>"
-                                        placeholder="Contact" required>
-                                    <span></span>
+                                    <input name="contact" type="text" id="updateContact" onblur="contactUpdateValidation()"
+                                        value="<?php echo $row['contact']; ?>" placeholder="Contact" required>
+                                    <span id="contactUpdateErr"></span>
                                 </div>
                                 <div class="inputbox">
                                     <input type="submit" value="Update">
@@ -74,9 +74,7 @@ if (empty ($_SESSION['email']) || $_SESSION['role'] != 0   ) {
 
                     </div>
                 </div>
-                <script>
-                    document.getElementById("role").value = "Teacher";
-                </script>
+                <script src="../js/validation.js"></script>
             </body>
 
             </html>

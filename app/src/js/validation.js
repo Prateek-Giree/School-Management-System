@@ -1,3 +1,7 @@
+//----------------------------------------------------------------------------------------------
+//Validating teacher and admin records before insertion
+//----------------------------------------------------------------------------------------------
+
 function validateForm() {
     var isNameValid = nameValidation();
     var isEmailValid = emailValidation();
@@ -17,6 +21,7 @@ function validateForm() {
 }
 
 function nameValidation() {
+    //for admin and teacher insertion
     var name = document.getElementById("fullname").value;
     var nameErr = document.getElementById("nameErr");
     nameErr.innerHTML = "";
@@ -82,18 +87,6 @@ function passwordValidation() {
         passwordErr.innerHTML = "Password must contain at least one letter and one special character";
         return false;
     }
-
-    //for password change form
-    var newPass = document.getElementById("newpass").value;
-    var newPassErr = document.getElementById("newPassErr");
-    newPassErr.innerHTML = "";
-    if (newPass.length < 8) {
-        newPassErr.innerHTML = "Password must be at least 8 characters long";
-    }
-    else if (!passwordRegex.test(newPass)) {
-        newPassErr.innerHTML = "Password must contain at least one letter and one special character";
-        return false;
-    }
     return true;
 }
 
@@ -107,6 +100,33 @@ function checkPass() {
         cpassErr.innerHTML = "Password does not match";
         return false;
     }
+    return true;
+}
+//----------------------------------------------------------------------------------------------
+
+
+
+
+//----------------------------------------------------------------------------------------------
+//validation password change form
+//----------------------------------------------------------------------------------------------
+
+function newPassValidation() {
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*[^A-Za-z0-9]).{8,25}$/;
+    var newPass = document.getElementById("newpass").value;
+    var newPassErr = document.getElementById("newPassErr");
+    newPassErr.innerHTML = "";
+    if (newPass.length < 8) {
+        newPassErr.innerHTML = "Password must be at least 8 characters long";
+    }
+    else if (!passwordRegex.test(newPass)) {
+        newPassErr.innerHTML = "Password must contain at least one letter and one special character";
+        return false;
+    }
+    return true;
+}
+
+function cPassCheck() {
     // for password change form
     var newPass = document.getElementById('newpass').value;
     var cnewPass = document.getElementById('cnewpass').value;
@@ -118,3 +138,82 @@ function checkPass() {
     }
     return true;
 }
+//----------------------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------------------
+//Validating teacher and admin records while updating
+//----------------------------------------------------------------------------------------------
+
+function updateValidation() {
+    isupdateNameValid = nameUpdateValidation();
+    isupdateEmailValid = emailUpdateValidation();
+    isupdateAddressValid = addressUpdateValidation();
+    isupdateContactValid = contactUpdateValidation();
+    if (isupdateNameValid && isupdateEmailValid && isupdateAddressValid && isupdateContactValid) {
+        return true;
+    }
+    return false;
+}
+
+function nameUpdateValidation() {
+    const nameRegex = /^[a-zA-Z ]{4,}$/;
+    var nameUp = document.getElementById('updateName').value;
+    console.log(nameUp);
+    var nameUpdateErr = document.getElementById('nameUpdateErr');
+    nameUpdateErr.innerHTML = "";
+    if (!nameRegex.test(nameUp)) {
+        if (nameUp.length < 4) {
+            nameUpdateErr.innerHTML = "Name is too short";
+        }
+        else {
+            nameUpdateErr.innerHTML = "Invalid name";
+        }
+        return false;
+    }
+    return true;
+}
+
+function emailUpdateValidation() {
+    var email = document.getElementById("updateEmail").value;
+    var emailUpdateErr = document.getElementById("emailUpdateErr");
+    emailUpdateErr.innerHTML = "";
+    const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (!emailRegex.test(email)) {
+        emailUpdateErr.innerHTML = "Invalid email";
+        return false;
+    }
+    return true;
+}
+
+function addressUpdateValidation() {
+    var address = document.getElementById("updateAddress").value;
+    var addressUpdateErr = document.getElementById("addressUpdateErr");
+    addressUpdateErr.innerHTML = "";
+    const addressRegex = /^(?=.*[a-zA-Z])[a-zA-Z0-9\s,'-]{4,}$/;
+    if (!addressRegex.test(address)) {
+        addressUpdateErr.innerHTML = "Invalid address";
+        return false;
+    }
+    return true;
+
+}
+
+function contactUpdateValidation() {
+    var contact = document.getElementById("updateContact").value;
+    var contactUpdateErr = document.getElementById("contactUpdateErr");
+    contactUpdateErr.innerHTML = "";
+    const contactRegex = /^(98|97)\d{8}$/;
+    if (!contactRegex.test(contact)) {
+        contactUpdateErr.innerHTML = "Invalid contact no.";
+        return false;
+    }
+    return true;
+}
+
+//----------------------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------------------
+// Validating student records before insertion
+//----------------------------------------------------------------------------------------------

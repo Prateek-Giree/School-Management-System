@@ -21,7 +21,7 @@
             </div>
             <div class="inputBox">
                 <input type="password" name="pass" id="pass" placeholder="Password" required="required" />
-                <i class="fa-solid fa-eye" id="togglePassword"></i>
+                <i class="fa-solid fa-eye" onclick="togglePasswordVisibility('pass')"></i>
             </div>
             <div class="inputBox">
                 <input type="submit" name="" value="Login" />

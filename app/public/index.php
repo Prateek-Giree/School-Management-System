@@ -48,7 +48,7 @@
                         <div class="inputBox">
                             <input type="password" name="pass" id="pass" required="required" />
                             <span>Password</span>
-                            <i class="fa-solid fa-eye" id="togglePassword"></i>
+                            <i class="fa-solid fa-eye" onclick="togglePasswordVisibility('pass')"></i>
                         </div>
                         <div class="inputBox">
                             <input type="submit" name="" value="Login" />
@@ -126,24 +126,33 @@
             </div>
 
             <div class="contactForm">
-                <form action="../src/process/contact.php" method="post" onsubmit="return validate();">
+                <form action="../src/process/contact.php" method="post"
+                    onsubmit="return nameValidation('name','nameErr') && emailValidation('email1','emailErr') && validateMessage('message','messageErr') ">
                     <h2>Send Message</h2>
                     <div class="inputBox">
-                        <input type="text" name="name" id="name" required="required" />
+                        <input type="text" name="name" id="name" onblur="nameValidation('name','nameErr')"
+                            required="required" />
                         <span>Full Name</span>
                     </div>
+                    <span style="color: rgb(232, 21, 35); display:block; height: 10px;" id="nameErr"></span>
+
                     <div class="inputBox">
-                        <input type="email" name="email" id="email1" required="required" />
+                        <input type="email" name="email" id="email1" onblur="emailValidation('email1','emailErr')"
+                            required="required" />
                         <span>Email</span>
                     </div>
+                    <span style="color: rgb(232, 21, 35); display:block; height: 10px;" id="emailErr"></span>
+
                     <div class="inputBox">
                         <textarea required="required" id="message" name="message"></textarea>
                         <span>Type your Message...</span>
                     </div>
+                    <span id="messageCount" style="color:white; display:block; height:10px;"></span> <br>
+                    <span style="color: rgb(232, 21, 35); display:block; height: 10px;" id="messageErr"></span>
+
                     <div class="inputBox">
                         <input type="submit" name="" value="Send" />
                     </div>
-                    <span id="validity"></span>
                 </form>
             </div>
         </div>
@@ -185,6 +194,7 @@
 
     <!-- Script  -->
     <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+    <script src='../src/js/validation.js'></script>
     <script type="text/javascript">
         // typing animation script
         var typed = new Typed('#element', {
@@ -193,41 +203,20 @@
             loop: true,
         });
 
-        function validate() {
 
-            let name = document.getElementById('name').value;
-            let email = document.getElementById("email1").value;
-            let message = document.getElementById('message').value;
+        document.addEventListener("DOMContentLoaded", function () {
+            var messageTextarea = document.getElementById("message");
 
-            /*------------------Name Validation--------------*/
-            let nameRegex = new RegExp("^[a-zA-Z]{4,}$");
-            if (!nameRegex.test(name)) {
-                document.getElementById("validity").innerHTML = "Invalid Name";
-                setTimeout(function () { document.getElementById("validity").innerHTML = ""; }, 3000);
-                return false;
-            }
+            // Attach event listeners for input and blur events
+            messageTextarea.addEventListener("input", function () {
+                updateWordCount('message', 'messageCount');
+            });
 
-            /*-----------------------------------------------*/
+            messageTextarea.addEventListener("blur", function () {
+                validateMessage('message', 'messageErr');
+            });
+        });
 
-            /*------------------Email Validation--------------*/
-            let emailRegex = new RegExp("^[a-zA-Z0-9\._-]+\@[a-zA-Z0-9-]+\.[a-zA-Z]{2,4}$");
-            console.log(email);
-            if (!emailRegex.test(email)) {
-                document.getElementById("validity").innerHTML = "Invalid Email";
-                setTimeout(function () { document.getElementById("validity").innerHTML = ""; }, 3000);
-                return false;
-            }
-
-            /*-----------------------------------------------*/
-
-            // Check if the message is not empty
-            if (message.trim() === '') {
-                document.getElementById("validity").innerHTML = "Message cannot be empty";
-                setTimeout(function () { document.getElementById("validity").innerHTML = ""; }, 3000);
-                return false;
-            }
-            return true
-        }
     </script>
 </body>
 

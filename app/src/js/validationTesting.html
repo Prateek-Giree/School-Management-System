@@ -96,6 +96,41 @@
       passwords.forEach((password) => {
         console.log(password, ":", validatePassword(password));
       });
+
+      function validateDateOfBirth(dateOfBirth) {
+        // Parse the date of birth string into a Date object
+        var dob = new Date(dateOfBirth);
+
+        // Calculate today's date
+        var today = new Date();
+
+        // Calculate the age
+        var age = today.getFullYear() - dob.getFullYear();
+
+        // Check if the birthday has occurred this year
+        if (
+          today.getMonth() < dob.getMonth() ||
+          (today.getMonth() === dob.getMonth() &&
+            today.getDate() < dob.getDate())
+        ) {
+          age--;
+        }
+
+        // Check if the age falls within the specified range
+        if (age >= 6 && age <= 16) {
+          return true; // Valid age
+        } else {
+          return false; // Invalid age
+        }
+      }
+
+      // Example usage:
+      var dateOfBirth = "2007-03-27"; // Example date of birth (YYYY-MM-DD format)
+      if (validateDateOfBirth(dateOfBirth)) {
+        console.log("Valid age"); // Age is between 6 and 16
+      } else {
+        console.log("Invalid age"); // Age is not between 6 and 16
+      }
     </script>
   </body>
 </html>

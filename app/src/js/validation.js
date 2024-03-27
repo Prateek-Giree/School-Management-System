@@ -5,17 +5,23 @@ function limitContactLength(input) {
     }
 }
 
+
+// Grey-out future dates in date of birth field
+var today = new Date().toISOString().split('T')[0];
+document.getElementById("dob").setAttribute("max", today);
+
+
 //----------------------------------------------------------------------------------------------
-//Validating teacher and admin records before insertion
+//Validating records before insertion
 //----------------------------------------------------------------------------------------------
 
-function validateForm() {
-    var isNameValid = nameValidation();
-    var isEmailValid = emailValidation();
-    var isAddressValid = addressValidation();
-    var isContactValid = contactValidation();
-    var isPasswordValid = passwordValidation();
-    var isPassMatch = checkPass();
+function validateUserInsertionForm() {
+    var isNameValid = nameValidation('fullname', 'nameErr');
+    var isEmailValid = emailValidation('email', 'emailErr');
+    var isAddressValid = addressValidation('address', 'addressErr');
+    var isContactValid = contactValidation('contact', 'contactErr');
+    var isPasswordValid = passwordValidation('pass', 'passwordErr');
+    var isPassMatch = checkPass('cpass', 'pass', 'cpassErr');
 
     // Check if all validations pass
     if (isNameValid && isEmailValid && isAddressValid && isContactValid && isPasswordValid && isPassMatch) {
@@ -27,200 +33,188 @@ function validateForm() {
     }
 }
 
-function nameValidation() {
-    //for admin and teacher insertion
-    var name = document.getElementById("fullname").value;
-    var nameErr = document.getElementById("nameErr");
-    nameErr.innerHTML = "";
-    const nameRegex = /^[a-zA-Z ]{4,}$/;
-    if (!nameRegex.test(name)) {
-        if (name.length < 4) {
-            nameErr.innerHTML = "Name is too short";
-        }
-        else {
-            nameErr.innerHTML = "Invalid name";
-        }
+function validateStudentForm() {
+    var isNameValid = nameValidation('fullname', 'nameErr');
+    var isFatherNameValid = nameValidation('father', 'fNameErr');
+    var isMotherNameValid = nameValidation('mother', 'mNameErr');
+    var isAddressValid = addressValidation('address', 'addressErr');
+    var isContactValid = contactValidation('contact', 'contactErr');
+    var isDobValid = dobValidation('dob', 'dobErr');
+
+    if (isNameValid && isFatherNameValid && isMotherNameValid && isAddressValid && isContactValid && isDobValid) {
+        return true;
+    }
+    else {
         return false;
     }
-    return true;
 }
-
-function emailValidation() {
-    var email = document.getElementById("email").value;
-    var emailErr = document.getElementById("emailErr");
-    emailErr.innerHTML = "";
-    const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    if (!emailRegex.test(email)) {
-        emailErr.innerHTML = "Invalid email";
-        return false;
-    }
-    return true;
-}
-
-function addressValidation() {
-    var address = document.getElementById("address").value;
-    var addressErr = document.getElementById("addressErr");
-    addressErr.innerHTML = "";
-    const addressRegex = /^(?=.*[a-zA-Z])[a-zA-Z0-9\s,'-]{4,}$/;
-    if (!addressRegex.test(address)) {
-        addressErr.innerHTML = "Invalid address";
-        return false;
-    }
-    return true;
-}
-
-function contactValidation() {
-    var contact = document.getElementById("contact").value;
-    var contactErr = document.getElementById("contactErr");
-    contactErr.innerHTML = "";
-    const contactRegex = /^(98|97)\d{8}$/;
-    if (!contactRegex.test(contact)) {
-        contactErr.innerHTML = "Invalid contact no.";
-        return false;
-    }
-    return true;
-}
-
-function passwordValidation() {
-    const passwordRegex = /^(?=.*[A-Za-z])(?=.*[^A-Za-z0-9]).{8,25}$/;
-    //for admin and teacher pages
-    var password = document.getElementById("pass").value;
-    var passwordErr = document.getElementById("passwordErr");
-    passwordErr.innerHTML = "";
-    if (password.length < 8) {
-        passwordErr.innerHTML = "Password must be at least 8 characters long";
-    }
-    else if (!passwordRegex.test(password)) {
-        passwordErr.innerHTML = "Password must contain at least one letter and one special character";
-        return false;
-    }
-    return true;
-}
-
-function checkPass() {
-    // for admin and teacher pages 
-    var pass = document.getElementById('pass').value;
-    var cpass = document.getElementById('cpass').value;
-    var cpassErr = document.getElementById('cpassErr');
-    cpassErr.innerHTML = "";
-    if (pass != cpass) {
-        cpassErr.innerHTML = "Password does not match";
-        return false;
-    }
-    return true;
-}
-//----------------------------------------------------------------------------------------------
-
-
-
 
 //----------------------------------------------------------------------------------------------
-//validation password change form
+//Validating records before updating
 //----------------------------------------------------------------------------------------------
 
-function newPassValidation() {
-    const passwordRegex = /^(?=.*[A-Za-z])(?=.*[^A-Za-z0-9]).{8,25}$/;
-    var newPass = document.getElementById("newpass").value;
-    var newPassErr = document.getElementById("newPassErr");
-    newPassErr.innerHTML = "";
-    if (newPass.length < 8) {
-        newPassErr.innerHTML = "Password must be at least 8 characters long";
-    }
-    else if (!passwordRegex.test(newPass)) {
-        newPassErr.innerHTML = "Password must contain at least one letter and one special character";
-        return false;
-    }
-    return true;
-}
+function validateUserUpdateForm() {
+    var isupdateNameValid = nameValidation('updateName', 'nameUpdateErr');
+    var isupdateEmailValid = emailValidation('updateEmail', 'emailUpdateErr');
+    var isupdateAddressValid = addressValidation('updateAddress', 'addressUpdateErr');
+    var isupdateContactValid = contactValidation('updateContact', 'contactUpdateErr');
 
-function cPassCheck() {
-    // for password change form
-    var newPass = document.getElementById('newpass').value;
-    var cnewPass = document.getElementById('cnewpass').value;
-    var cnewPassErr = document.getElementById('cnewPassErr');
-    cnewPassErr.innerHTML = "";
-    if (newPass != cnewPass) {
-        cnewPassErr.innerHTML = "Password does not match";
-        return false;
-    }
-    return true;
-}
-//----------------------------------------------------------------------------------------------
-
-
-//----------------------------------------------------------------------------------------------
-//Validating teacher and admin records while updating
-//----------------------------------------------------------------------------------------------
-
-function updateValidation() {
-    isupdateNameValid = nameUpdateValidation();
-    isupdateEmailValid = emailUpdateValidation();
-    isupdateAddressValid = addressUpdateValidation();
-    isupdateContactValid = contactUpdateValidation();
     if (isupdateNameValid && isupdateEmailValid && isupdateAddressValid && isupdateContactValid) {
         return true;
     }
-    return false;
+    else {
+        return false;
+    }
 }
 
-function nameUpdateValidation() {
+
+//----------------------------------------------------------------------------------------------
+// functions to validate input fields
+//----------------------------------------------------------------------------------------------
+
+function nameValidation(inputId, errorId) {
+    var name = document.getElementById(inputId).value;
+    var errorId = document.getElementById(errorId);
+    errorId.innerHTML = "";
     const nameRegex = /^[a-zA-Z ]{4,}$/;
-    var nameUp = document.getElementById('updateName').value;
-    console.log(nameUp);
-    var nameUpdateErr = document.getElementById('nameUpdateErr');
-    nameUpdateErr.innerHTML = "";
-    if (!nameRegex.test(nameUp)) {
-        if (nameUp.length < 4) {
-            nameUpdateErr.innerHTML = "Name is too short";
+    if (!nameRegex.test(name)) {
+        if (name.length < 4) {
+            errorId.innerHTML = "Name is too short";
         }
         else {
-            nameUpdateErr.innerHTML = "Invalid name";
+            errorId.innerHTML = "Invalid name";
         }
         return false;
     }
     return true;
 }
 
-function emailUpdateValidation() {
-    var email = document.getElementById("updateEmail").value;
-    var emailUpdateErr = document.getElementById("emailUpdateErr");
-    emailUpdateErr.innerHTML = "";
+function emailValidation(inputId, errorId) {
+    var email = document.getElementById(inputId).value;
+    var errorId = document.getElementById(errorId);
+    errorId.innerHTML = "";
     const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     if (!emailRegex.test(email)) {
-        emailUpdateErr.innerHTML = "Invalid email";
+        errorId.innerHTML = "Invalid email";
         return false;
     }
     return true;
 }
 
-function addressUpdateValidation() {
-    var address = document.getElementById("updateAddress").value;
-    var addressUpdateErr = document.getElementById("addressUpdateErr");
-    addressUpdateErr.innerHTML = "";
+function addressValidation(inputId, errorId) {
+    var address = document.getElementById(inputId).value;
+    var errorId = document.getElementById(errorId);
+    errorId.innerHTML = "";
     const addressRegex = /^(?=.*[a-zA-Z])[a-zA-Z0-9\s,'-]{4,}$/;
     if (!addressRegex.test(address)) {
-        addressUpdateErr.innerHTML = "Invalid address";
+        errorId.innerHTML = "Invalid address";
         return false;
     }
     return true;
-
 }
 
-function contactUpdateValidation() {
-    var contact = document.getElementById("updateContact").value;
-    var contactUpdateErr = document.getElementById("contactUpdateErr");
-    contactUpdateErr.innerHTML = "";
+function contactValidation(inputId, errorId) {
+    var contact = document.getElementById(inputId).value;
+    var errorId = document.getElementById(errorId);
+    errorId.innerHTML = "";
     const contactRegex = /^(98|97)\d{8}$/;
     if (!contactRegex.test(contact)) {
-        contactUpdateErr.innerHTML = "Invalid contact no.";
+        errorId.innerHTML = "Invalid contact no.";
         return false;
     }
     return true;
 }
 
-//----------------------------------------------------------------------------------------------
+function passwordValidation(inputId, errorId) {
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*[^A-Za-z0-9]).{8,25}$/;
+    var password = document.getElementById(inputId).value;
+    var errorId = document.getElementById(errorId);
+    errorId.innerHTML = "";
+    if (!passwordRegex.test(password)) {
+        if (password.length < 8) {
+            errorId.innerHTML = "Password must be at least 8 characters long";
+        }
+        else {
+            errorId.innerHTML = "Password must contain at least one letter and one special character";
+        }
+        return false;
+    }
+    return true;
+}
+
+function checkPass(inputId1, inputId2, errorId) {
+    // for admin and teacher pages 
+    var cpass = document.getElementById(inputId1).value;
+    var pass = document.getElementById(inputId2).value;
+    var errorId = document.getElementById(errorId);
+    errorId.innerHTML = "";
+    if (pass != cpass) {
+        errorId.innerHTML = "Password does not match";
+        return false;
+    }
+    return true;
+}
 
 
+function dobValidation(dateOfBirth, errorId) {
+    var dob = document.getElementById(dateOfBirth).value;
+    var errorId = document.getElementById(errorId);
+    errorId.innerHTML = "";
+    dob = new Date(dob);
+    var today = new Date();
+    var age = today.getFullYear() - dob.getFullYear();
+
+    // Check if the birthday has occurred this year
+    if (today.getMonth() < dob.getMonth() ||
+        (today.getMonth() === dob.getMonth() && today.getDate() < dob.getDate())) {
+        age--;
+    }
+    // Check if the age falls within the specified range
+    if (age < 6) {
+        errorId.innerHTML = "<b>Invalid!</b> :Age must be greater than 6";
+    }
+    if (age > 16) {
+        errorId.innerHTML = "<b>Invalid!</b> :Age must be less than 16";
+    }
+}
+
 //----------------------------------------------------------------------------------------------
-// Validating student records before insertion
+// Message field validation
 //----------------------------------------------------------------------------------------------
+
+function updateWordCount(inputId1, inputId2) {
+    var messageTextarea = document.getElementById(inputId1);
+    var displayCount = document.getElementById(inputId2);
+
+    var message = messageTextarea.value.trim();
+    var words = message.split(/\s+/);
+
+    var wordCount = words.length;
+    displayCount.innerHTML = wordCount + "/150";
+}
+
+
+function validateMessage(inputId1, errorId) {
+    var messageTextarea = document.getElementById(inputId1);
+    var errorElement = document.getElementById(errorId);
+
+    var message = messageTextarea.value.trim();
+    var words = message.split(/\s+/);
+
+    var wordCount = words.length;
+    errorElement.innerHTML = "";
+
+    if (message === "") {
+        errorElement.innerHTML = "Message cannot be empty";
+        return false;
+    }
+    if (wordCount < 25) {
+        errorElement.innerHTML = "Must be greater than 25 characters";
+        return false;
+    }
+    if (wordCount > 150) {
+        errorElement.innerHTML = "Cannot exceed 150 characters";
+        return false;
+    }
+    return true;
+}

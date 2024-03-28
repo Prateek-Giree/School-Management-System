@@ -43,7 +43,7 @@ if (empty($_SESSION['email'])|| $_SESSION['role'] != 0) {
 
                         <div class="newAdmin">
                             <h1>Update student records</h1>
-                            <form action="../process/student_update.php" method="post">
+                            <form action="../process/student_update.php" method="post" onsubmit="return validateStudentForm()" >
                                 <input type="hidden" name="id" value="<?php echo $row['sid']; ?>">
                                 <!-- If student data id edited via class page -->
                                 <input type="hidden" name="class_id" value="<?php if (isset($_REQUEST['class_id'])) {
@@ -52,9 +52,9 @@ if (empty($_SESSION['email'])|| $_SESSION['role'] != 0) {
                                
                                 <div class="inputbox">
                                     <label for="">Full Name:</label>
-                                    <input type="text" name="fullname" id="fullname" placeholder="Full Name"
+                                    <input type="text" name="fullname" id="fullname" onblur="nameValidation('fullname','nameErr')" placeholder="Full Name"
                                         value="<?php echo $row['name'] ?>" required>
-                                    <span></span>
+                                    <span id="nameErr"></span>
                                 </div>
                                 <div class="inputbox">
                                     <label for="">Roll no.:</label>
@@ -64,16 +64,17 @@ if (empty($_SESSION['email'])|| $_SESSION['role'] != 0) {
                                 </div>
                                 <div class="inputbox">
                                     <label for="">Father's name:</label>
-                                    <input name="father" type="text" id="father" placeholder="Father's name"
+                                    <input name="father" type="text" id="father" placeholder="Father's name"  onblur="nameValidation('father','fNameErr')"
                                         value="<?php echo $row['father'] ?>" required>
-                                    <span></span>
+                                    <span id="fNameErr"></span>
                                 </div>
                                 <div class="inputbox">
                                     <label for="">Mother's name:</label>
-                                    <input name="mother" type="text" id="mother" placeholder="Mother's name"
+                                    <input name="mother" type="text" id="mother" placeholder="Mother's name" onblur="nameValidation('mother','mNameErr')"
                                         value="<?php echo $row['mother'] ?>" required>
-                                    <span></span>
-                                </div>
+                                        <span id="mNameErr"></span>
+                                    </div>
+
                                 <div class="inputbox">
                                     <label for="">Class:</label>
                                     <input name="class" type="number" id="class" placeholder="Class"
@@ -82,21 +83,22 @@ if (empty($_SESSION['email'])|| $_SESSION['role'] != 0) {
                                 </div>
                                 <div class="inputbox">
                                     <label for="">Address:</label>
-                                    <input name="address" type="text" id="address" placeholder="Address"
+                                    <input name="address" type="text" id="address" placeholder="Address"  onblur="addressValidation('address','addressErr')"
                                         value="<?php echo $row['address'] ?>" required>
-                                    <span></span>
+                                        <span id="addressErr"></span>
                                 </div>
                                 <div class="inputbox">
                                     <label for="">Contact no.:</label>
-                                    <input name="contact" type="text" id="contact" placeholder="Contact number"
+                                    <input name="contact" type="text" id="contact" placeholder="Contact number" oninput="limitContactLength(this)"   
+                                onblur="contactValidation('contact','contactErr')"
                                         value="<?php echo $row['contact'] ?>" required>
-                                    <span></span>
+                                        <span id="contactErr"></span> 
                                 </div>
                                 <div class="inputbox">
                                     <label for="">Date of birth:</label>
-                                    <input name="dob" type="date" id="dob" placeholder="Date of birth"
+                                    <input name="dob" type="date" id="dob" placeholder="Date of birth"  onblur="dobValidation('dob','dobErr')"
                                         value="<?php echo $row['dob'] ?>" required>
-                                    <span></span>
+                                        <span id="dobErr"></span>
                                 </div>
                                 <div class="inputbox">
                                     <label for="">Gender:</label>
@@ -119,6 +121,7 @@ if (empty($_SESSION['email'])|| $_SESSION['role'] != 0) {
 
                     </div>
                 </div>
+                <script src="../js/validation.js"></script>
             </body>
 
             </html>

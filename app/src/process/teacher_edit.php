@@ -2,12 +2,12 @@
 session_start();
 
 // Redirect to index page if session dont exists
-if (empty ($_SESSION['email']) || $_SESSION['role'] != 0) {
+if (empty($_SESSION['email']) || $_SESSION['role'] != 0) {
     header('location:../../public/index.php');
     exit();
 } else {
     include "../includes/connection.php";
-    if (isset ($_REQUEST['id'])) {
+    if (isset($_REQUEST['id'])) {
         $id = $_REQUEST['id'];
         $sql = "select * from user where uid=$id ";
         $result = $conn->query($sql);
@@ -40,31 +40,34 @@ if (empty ($_SESSION['email']) || $_SESSION['role'] != 0) {
 
                         <div class="newAdmin">
                             <h1 id="admin">Update teacher details</h1>
-                            <form action="../process/teacher_update.php" method="post" onsubmit="return updateValidation()">
+                            <form action="../process/teacher_update.php" method="post" onsubmit="return validateUserUpdateForm()">
                                 <input type="hidden" name="id" value="<?php echo $row['uid']; ?>">
                                 <div class="inputbox">
                                     <label for="">Full Name:</label>
-                                    <input type="text" name="fullname" id="updateName" onblur="nameUpdateValidation()"
-                                        value="<?php echo $row['name']; ?>" placeholder="Full Name" required>
+                                    <input type="text" name="fullname" id="updateName"
+                                        onblur="nameValidation('updateName','nameUpdateErr')" value="<?php echo $row['name']; ?>"
+                                        placeholder="Full Name" required>
                                     <span id="nameUpdateErr"></span>
                                 </div>
                                 <div class="inputbox">
                                     <label for="">Email:</label>
-                                    <input name="email" type="text" id="updateEmail" onblur="emailUpdateValidation()"
+                                    <input name="email" type="text" id="updateEmail"
+                                        onblur="emailValidation('updateEmail','emailUpdateErr')"
                                         value="<?php echo $row['email']; ?>" placeholder="Email" required>
                                     <span id="emailUpdateErr"></span>
                                 </div>
                                 <div class="inputbox">
                                     <label for="">Address:</label>
-                                    <input name="address" type="text" id="updateAddress" onblur="addressUpdateValidation()"
+                                    <input name="address" type="text" id="updateAddress"
+                                        onblur="addressValidation('updateAddress','addressUpdateErr')"
                                         value="<?php echo $row['address']; ?>" placeholder="Address" required>
                                     <span id="addressUpdateErr"></span>
                                 </div>
                                 <div class="inputbox">
                                     <label for="">Contact:</label>
                                     <input name="contact" type="text" id="updateContact" oninput="limitContactLength(this)"
-                                        onblur="contactUpdateValidation()" value="<?php echo $row['contact']; ?>"
-                                        placeholder="Contact" required>
+                                        onblur="contactUpdateValidation('updateContact','contactUpdateErr')"
+                                        value="<?php echo $row['contact']; ?>" placeholder="Contact" required>
                                     <span id="contactUpdateErr"></span>
                                 </div>
                                 <div class="inputbox">

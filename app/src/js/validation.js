@@ -172,10 +172,13 @@ function dobValidation(dateOfBirth, errorId) {
     // Check if the age falls within the specified range
     if (age < 6) {
         errorId.innerHTML = "<b>Invalid!</b> :Age must be greater than 6";
+        return false;
     }
     if (age > 16) {
         errorId.innerHTML = "<b>Invalid!</b> :Age must be less than 16";
+        return false;
     }
+    return true;
 }
 
 //----------------------------------------------------------------------------------------------

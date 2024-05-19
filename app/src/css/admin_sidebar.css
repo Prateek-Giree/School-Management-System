@@ -51,18 +51,18 @@ nav {
   box-shadow: 0 20px 35px rgba(0, 0, 0, 0.2);
 }
 
-li a {
+li .sub-btn {
   font-weight: 600;
   position: relative;
   color: white;
-  font-size: 14px;
+  font-size: 17px;
   display: table;
   width: 280px;
   padding: 10px;
   text-decoration: none;
   transition: 0.4s;
 }
-li a:hover {
+li .sub-btn:hover {
   background: #fff;
   color: #09353c;
   font-weight: bold;
@@ -80,7 +80,44 @@ nav .fas {
   position: relative;
   margin-left: 20px;
 }
-.logout {
-  position: absolute;
+#logout {
+  position: initial;
   bottom: 0;
+}
+
+.container nav ul li a .dropdown {
+  position: absolute;
+  right: 0;
+  margin: 6px 40px;
+  transition: 0.3s ease;
+}
+
+.container nav ul li .sub-menu {
+  background: #09353c;
+  display: none;
+}
+
+.container nav ul li .sub-menu a {
+  padding-left: 80px;
+  font-size: 15px;
+}
+
+.rotate {
+  transform: rotate(90deg);
+}
+
+.sub-menu a {
+  display: flex;
+  text-decoration: none;
+  color: #fff;
+  transition: 0.4s;
+}
+
+.sub-menu a:hover {
+  transition: 0.4s;
+  transform: translateY(-10px);
+}
+
+.sub-menu i {
+  font-size: 1rem;
 }

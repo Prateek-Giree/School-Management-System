@@ -54,8 +54,8 @@ if (empty ($_SESSION['email']) || $_SESSION['role'] != 0) {
             <i class="fa-solid fa-angle-right dropdown"></i>
           </a>
           <div class="sub-menu">
-            <a href="../process/teacher_show.php" class="sub-item"><i class="fas fa-add"></i>Show Teachers</a>
-            <a href="../pages/teacher_add.php" class="sub-item"><i class="fas fa-eye"></i>Add Teachers</a>
+            <a href="../process/teacher_show.php" class="sub-item"><i class="fas fa-eye"></i>Show Teachers</a>
+            <a href="../pages/teacher_add.php" class="sub-item"><i class="fas fa-add"></i>Add Teachers</a>
           </div>
         </li>
         <li>

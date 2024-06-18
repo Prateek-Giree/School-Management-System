@@ -41,7 +41,7 @@ if (empty($_SESSION['email'])|| $_SESSION['role'] != 0) {
                                 <tr class="heading">
                                     <th>Name</th>
                                     <th>Email</th>
-                                    <th style="width=60%;">Messages</th>
+                                    <th >Messages</th>
                                     <th>Time</th>
                                     <th>Action</th>
                                 </tr>
